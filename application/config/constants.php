@@ -91,9 +91,8 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 |--------------------------------------------------------------------------
 */
 define('ABSPATH',$_SERVER['DOCUMENT_ROOT']);
-define('URL',"http://{$_SERVER['HTTP_HOST']}/");
+define('URL',"https://{$_SERVER['HTTP_HOST']}/");
 define('IMAGENS', URL.'assets/imagens/');
 define('JS', URL.'assets/js/');
-define('CSS', URL.'assets/css/');
 define('FONTS', URL.'assets/fonts/');
 define('TITULOPAGINA', 'Federação Piauiense de KikBoxe');

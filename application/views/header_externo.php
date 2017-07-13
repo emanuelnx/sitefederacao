@@ -17,23 +17,23 @@
     <link rel="apple-touch-icon" sizes="114x114" href="<?=IMAGENS?>apple-touch-icon-114x114.png">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css"  href="<?=CSS?>bootstrap.css">
+    <link rel="stylesheet" type="text/css"  href="<?=asset_url()?>css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<?=FONTS?>font-awesome/css/font-awesome.css">
 
     <!-- Nivo Lightbox
     ================================================== -->
-    <link rel="stylesheet" href="<?=CSS?>nivo-lightbox.css" >
-    <link rel="stylesheet" href="<?=CSS?>nivo_lightbox_themes/default/default.css">
+    <link rel="stylesheet" href="<?=asset_url()?>css/nivo-lightbox.css" >
+    <link rel="stylesheet" href="<?=asset_url()?>css/nivo_lightbox_themes/default/default.css">
 
     <!-- Slider
     ================================================== -->
-    <link href="<?=CSS?>owl.carousel.css" rel="stylesheet" media="screen">
-    <link href="<?=CSS?>owl.theme.css" rel="stylesheet" media="screen">
+    <link href="<?=asset_url()?>css/owl.carousel.css" rel="stylesheet" media="screen">
+    <link href="<?=asset_url()?>css/owl.theme.css" rel="stylesheet" media="screen">
 
     <!-- Stylesheet
     ================================================== -->
-    <link rel="stylesheet" type="text/css"  href="<?=CSS?>style.css">
-    <link rel="stylesheet" type="text/css" href="<?=CSS?>responsive.css">
+    <link rel="stylesheet" type="text/css"  href="<?=asset_url()?>css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?=asset_url()?>css/responsive.css">
 
     <!-- Google Fonts
     ================================================== -->

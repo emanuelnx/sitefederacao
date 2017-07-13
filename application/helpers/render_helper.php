@@ -1,4 +1,10 @@
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+if (!function_exists('asset_url()')) {
+	function asset_url() {
+		return base_url().'assets/';
+	}
+}
 
 /**
 * IMPRIME O LINK DE TODOS OS ASSETS DO TIPO INFORMADO NA TELA
@@ -21,7 +27,7 @@ function assetsJs($assets) {
 	if (!count($assets)) { return; }
 
 	foreach ($assets as $key => $js) {
-		echo '<script type="text/javascript" src="'.JS.$js.'"></script>';
+		echo '<script type="text/javascript" src="'.asset_url().'js/'.$js.'"></script>';
 	}
 }
 
@@ -29,6 +35,6 @@ function assetsCss($assets) {
 	if (!count($assets)) { return; }
 
 	foreach ($assets as $key => $css) {
-		echo '<link rel="stylesheet" type="text/css"  href="'.CSS.$css.'">';
+		echo '<link rel="stylesheet" type="text/css"  href="'.asset_url().'css/'.$css.'">';
 	}
 }
