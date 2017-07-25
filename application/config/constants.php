@@ -92,6 +92,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 */
 define('ABSPATH',$_SERVER['DOCUMENT_ROOT']);
 define('URL',"https://{$_SERVER['HTTP_HOST']}/");
+// define('URL',"http://localhost/federacaokickboxer/");
 define('IMAGENS', URL.'assets/imagens/');
 define('JS', URL.'assets/js/');
 define('FONTS', URL.'assets/fonts/');
