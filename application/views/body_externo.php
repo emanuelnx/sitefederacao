@@ -1,85 +1,143 @@
 
 
     <!-- Main Navigation 
-    ================================================== -->
-    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#"><img src="<?=IMAGENS?>logocbkb.png" alt="..."></a>
-            </div>
+        ================================================== -->
+        <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#"><img src="<?=IMAGENS?>logocbkb.png" alt="..."></a>
+                </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="#tf-home" class="scroll">Home</a></li>
-                <li><a href="#tf-team" class="scroll">Patrocinios</a></li>
-                <li><a href="#tf-about" class="scroll">Historia</a></li>
-                <li><a href="#tf-blog" class="scroll">Blog</a></li>
-                <li><a href="#tf-contact" class="scroll">Contato</a></li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#tf-home"    class="scroll">Home</a></li>
+                    <li><a href="#tf-team"    class="scroll">Patrocinios</a></li>
+                    <li><a href="#tf-about"   class="scroll">Historia</a></li>
+                    <li><a href="#tf-blog"    class="scroll">Blog</a></li>
+                    <li><a href="#tf-contact" class="scroll">Contato</a></li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
 
     <!-- Home Section
-    ================================================== -->
-    <div id="tf-home" class="slider">
-        <div class="overlay"> <!-- Overlay Color -->
-            <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                </ol>
+     ================================================== -->
+        <div id="tf-home" class="slider">
+            <div class="overlay"> <!-- Overlay Color -->
+                <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
 
-                  <!-- Wrapper for slides -->
-                  <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="<?=IMAGENS?>bg/banner01.png" alt="...">
-                        <div class="carousel-caption">
-                            <div class="content-heading text-center"> <!-- Input Your Home Content Here -->
-                                <h1>Pratique / Filie-se / Kickboxing</h1>
-                                <p class="lead">We create beautiful, innovative and  effective handcrafted brands & website.</p>
-                                <a href="#tf-works" class="scroll goto-btn text-uppercase">View Our Works</a> <!-- Link to your portfolio section -->
-                            </div><!-- End Input Your Home Content Here -->
+                      <!-- Wrapper for slides -->
+                      <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="<?=IMAGENS?>bg/banner01.png" alt="...">
+                            <div class="carousel-caption">
+                                <div class="content-heading text-center"> <!-- Input Your Home Content Here -->
+                                    <h1>Pratique / Filie-se / Kickboxing</h1>
+                                    <p class="lead">We create beautiful, innovative and  effective handcrafted brands & website.</p>
+                                    <a href="#tf-works" class="scroll goto-btn text-uppercase">View Our Works</a> <!-- Link to your portfolio section -->
+                                </div><!-- End Input Your Home Content Here -->
+                            </div>
                         </div>
+
+                        <div class="item">
+                            <img src="<?=IMAGENS?>bg/banner02.png" alt="...">
+                            <div class="carousel-caption">
+                                <div class="content-heading text-center"> <!-- Input Your Home Content Here -->
+                                    <h1>Confederação Brasileira de Kickboxing</h1>
+                                    <p class="lead">We create beautiful, innovative and  effective handcrafted brands & website.</p>
+                                    <a href="#tf-contact" class="scroll goto-btn text-uppercase">Entre em contato</a> <!-- Link to your portfolio section -->
+                                </div><!-- End Input Your Home Content Here -->
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="<?=IMAGENS?>bg/banner03.png" alt="...">
+                            <div class="carousel-caption">
+                                <div class="content-heading text-center"> <!-- Input Your Home Content Here -->
+                                    <h1>We Delivery Our Promise.</h1>
+                                    <p class="lead">We create beautiful, innovative and  effective handcrafted brands & website.</p>
+                                    <a href="#tf-about" class="scroll goto-btn text-uppercase">Learn More</a> <!-- Link to your portfolio section -->
+                                </div><!-- End Input Your Home Content Here -->
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div><!-- End Overlay Color -->
+        </div>
+
+        <!-- Inicio historia -->
+         <div id="tf-about" class="gray-bg"> <!-- fullwidth gray background -->
+            <div class="container"><!-- container -->
+                <div class="vline"></div> <!--  Vertical Line -->
+                <div id="process" class="row"> <!-- row -->
+
+                    <div class="col-md-10 col-md-offset-1">
+
+                        <div class="media process"> <!-- Process #1 -->
+                            <div class="media-right media-middle">
+                                <i class="fa fa-search-plus"></i>
+                            </div>
+                            <div class="media-body">
+                                <a href="#tf-about">
+                                <h4 class="media-heading"><strong>HISTORIA DA CBKB </strong></h4>
+                                </a>
+                                <p>A Confederação Brasileira de Kickboxing foi fundada em 1993, durante a realização do 3º Campeonato Brasileiro de Kickboxing, realizado na cidade de Cruz Alta/RS. A Entidade está representada em 18 estados e conta com mais 2.000 Faixas Preta formados e mais de 25.000 filiados desde a sua fundação.</p>
+                            </div>
+                        </div><!-- Process #1 -->
+
+                        <div class="media process"> <!-- Process #2 -->
+                            <div class="media-right media-middle">
+                                <i class="fa fa-wrench"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">HISTORIA DO KICKBOXING PIAUIENSE</h4>
+                                <p>O kickboxing Piauiense foi trazido ao estado pelo Professor Giovanni Pereira em meados de 2005 quando em visita a seus mestres Adriano Dutra e Alexander Terra em Colatina-ES em evento Nacional de Jeet Kune Do, modalidade que praticava anteriormente conheceu Mestre Renato Lima em uma apresentação na praça de eventos de Colatina.</p>
+                            </div>
+                        </div><!-- Process #2 -->
+
+                        <div class="media process"> <!-- Process #3 -->
+                            <div class="media-right media-middle">
+                                <i class="fa fa-flask"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Testing and Refine</h4>
+                                <p>Ultrices lacus proin conubia dictum tempus, tempor pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est ut cubilia nec, fermentum arcu praesent, pede etiam. Tempor vestibulum turpis id ligula mi mattis. Eget arcu vitae mauris amet odio.</p>
+                            </div>
+                        </div><!-- Process #3 -->
+
+                        <div class="media process"> <!-- Process #4 -->
+                            <div class="media-right media-middle">
+                                <i class="fa fa-truck"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Launch</h4>
+                                <p>Ultrices lacus proin conubia dictum tempus, tempor pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est ut cubilia nec, fermentum arcu praesent, pede etiam. Tempor vestibulum turpis id ligula mi mattis. Eget arcu vitae mauris amet odio.</p>
+                            </div>
+                        </div><!-- Process #4 -->
+                        
                     </div>
 
-                    <div class="item">
-                        <img src="<?=IMAGENS?>bg/banner02.png" alt="...">
-                        <div class="carousel-caption">
-                            <div class="content-heading text-center"> <!-- Input Your Home Content Here -->
-                                <h1>Confederação Brasileira de Kickboxing</h1>
-                                <p class="lead">We create beautiful, innovative and  effective handcrafted brands & website.</p>
-                                <a href="#tf-contact" class="scroll goto-btn text-uppercase">Entre em contato</a> <!-- Link to your portfolio section -->
-                            </div><!-- End Input Your Home Content Here -->
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="<?=IMAGENS?>bg/banner03.png" alt="...">
-                        <div class="carousel-caption">
-                            <div class="content-heading text-center"> <!-- Input Your Home Content Here -->
-                                <h1>We Delivery Our Promise.</h1>
-                                <p class="lead">We create beautiful, innovative and  effective handcrafted brands & website.</p>
-                                <a href="#tf-about" class="scroll goto-btn text-uppercase">Learn More</a> <!-- Link to your portfolio section -->
-                            </div><!-- End Input Your Home Content Here -->
-                        </div>
-                    </div>
-                  </div>
-            </div>
-        </div><!-- End Overlay Color -->
+                </div> <!-- end row -->
+            </div><!-- end container -->
+        </div>  <!-- end fullwidth gray background -->
     </div>
 
-        <!-- Team Section
+
+    <!-- Team Section
         ================================================== -->
         <div id="tf-team">
             <div class="container"> <!-- container -->
@@ -112,12 +170,12 @@
                     <div class="item"> <!-- Team #2 -->
                         <div class="hover-bg"> <!-- Team Wrapper -->
                             <div class="hover-text off"> <!-- Hover Description -->
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, esse dicta corrupti provident, voluptas nulla sed, omnis quidem, vero aspernatur a eaque! Architecto eligendi veritatis, molestiae quibusdam nemo consectetur ea..</p>
+                                <p>Entre em contato e veja a melhor forma para anuncio em nosso site.</p>
                             </div> <!-- End Hover Description -->
-                            <img src="<?=IMAGENS?>team/02.png" alt="..." class="img-responsive"><!-- Team Image -->
+                            <img src="<?=IMAGENS?>team/anuncie.png" alt="..." class="img-responsive"><!-- Team Image -->
                             <div class="team-detail text-center">
-                                <h3>Cara do sumô</h3>
-                                <p class="text-uppercase">Ajuda a ganhar peso</p>
+                                <h3>Anuncie aqui</h3>
+                                <p class="text-uppercase">Seja Patrocinador</p>
                                 <ul class="list-inline social"> 
                                     <li><a href="#" class="fa fa-facebook"></a></li> <!-- facebook link here -->
                                     <li><a href="#" class="fa fa-twitter"></a></li> <!-- twitter link here -->
@@ -186,7 +244,7 @@
             </div> <!-- container -->
         </div>
 
-            <!--  Blog Section
+        <!--  Blog Section
             ================================================== -->
             <div id="tf-blog">
                 <div class="container"> <!-- container -->
@@ -392,96 +450,96 @@
             </div>
 
     <!-- Contact Section
-    ================================================== -->
-    <div id="tf-contact">
+        ================================================== -->
+        <div id="tf-contact">
 
-        <div class="container"> <!-- container -->
-            <div class="section-header">
-                <h2>Feel Free to <span class="highlight"><strong>Contact Us</strong></span></h2>
-                <h5><em>We design and build functional and beautiful websites</em></h5>
-                <div class="fancy"><span><img src="<?=IMAGENS?>favicon.ico" alt="..."></span></div>
-            </div>
-        </div><!-- end container -->
+            <div class="container"> <!-- container -->
+                <div class="section-header">
+                    <h2>Feel Free to <span class="highlight"><strong>Contact Us</strong></span></h2>
+                    <h5><em>We design and build functional and beautiful websites</em></h5>
+                    <div class="fancy"><span><img src="<?=IMAGENS?>favicon.ico" alt="..."></span></div>
+                </div>
+            </div><!-- end container -->
 
-        <div id="map"></div>  <!-- google map -->
+            <div id="map"></div>  <!-- google map -->
 
-        <div class="container"><!-- container -->
-            <div class="row"> <!-- outer row -->
-                <div class="col-md-10 col-md-offset-1"> <!-- col 10 with offset 1 to centered -->
-                    <div class="row"> <!-- nested row -->
+            <div class="container"><!-- container -->
+                <div class="row"> <!-- outer row -->
+                    <div class="col-md-10 col-md-offset-1"> <!-- col 10 with offset 1 to centered -->
+                        <div class="row"> <!-- nested row -->
 
-                        <!-- contact detail using col 4 -->
-                        <div class="col-md-4">  
-                            <div class="contact-detail">
-                                <i class="fa fa-map-marker"></i>
-                                <h4>Jl. Pahlawan VII No.247-D Sidoarjo-Surabaya-Indonesia</h4> <!-- address -->
+                            <!-- contact detail using col 4 -->
+                            <div class="col-md-4">  
+                                <div class="contact-detail">
+                                    <i class="fa fa-map-marker"></i>
+                                    <h4>Rua Nilo Peçanha 1809 Lourival Parente, 64023077 Teresina</h4> <!-- address -->
+                                </div>
                             </div>
-                        </div>
-                        <!-- contact detail using col 4 -->
-                        <div class="col-md-4">
-                            <div class="contact-detail">
-                                <i class="fa fa-envelope-o"></i>
-                                <h4>rudhisasmito@gmail.com</h4><!-- email add -->
-                            </div>
-                        </div>
-
-                        <!-- contact detail using col 4 -->
-                        <div class="col-md-4">
-                            <div class="contact-detail">
-                                <i class="fa fa-phone"></i>
-                                <h4>+613 0000 0000</h4> <!-- phone no. -->
-                            </div>
-                        </div>
-
-                    </div> <!-- end nested row -->
-                </div> <!-- end col 10 with offset 1 to centered -->
-            </div><!-- end outer row -->
-
-            <div class="row text-center"> <!-- contact form outer row with centered text-->
-                <div class="col-md-10 col-md-offset-1"> <!-- col 10 with offset 1 to centered -->
-                    <form id="contact-form" class="form" name="sentMessage" novalidate> <!-- form wrapper -->
-
-                        <div class="row"> <!-- nested inner row -->
-
-                            <!-- Input your name -->
+                            <!-- contact detail using col 4 -->
                             <div class="col-md-4">
-                                <div class="form-group"> <!-- Your name input -->
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
-                                    <p class="help-block text-danger"></p>
+                                <div class="contact-detail">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <h4>fpikickboxing@bol.com.br</h4><!-- email add -->
                                 </div>
                             </div>
 
-                            <!-- Input your email -->
+                            <!-- contact detail using col 4 -->
                             <div class="col-md-4">
-                                <div class="form-group"> <!-- Your email input -->
-                                    <input type="email" autocomplete="off" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
-                                    <p class="help-block text-danger"></p>
+                                <div class="contact-detail">
+                                    <i class="fa fa-phone"></i>
+                                    <h4>+613 0000 0000</h4> <!-- phone no. -->
                                 </div>
                             </div>
 
-                            <!-- Input your Phone no. -->
-                            <div class="col-md-4">
-                                <div class="form-group"> <!-- Your email input -->
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="Your Phone No. *" id="phone" required data-validation-required-message="Please enter your phone no.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
+                        </div> <!-- end nested row -->
+                    </div> <!-- end col 10 with offset 1 to centered -->
+                </div><!-- end outer row -->
 
-                        </div><!-- end nested inner row -->
+                <div class="row text-center"> <!-- contact form outer row with centered text-->
+                    <div class="col-md-10 col-md-offset-1"> <!-- col 10 with offset 1 to centered -->
+                        <form id="contact-form" class="form" name="sentMessage" novalidate> <!-- form wrapper -->
+
+                            <div class="row"> <!-- nested inner row -->
+
+                                <!-- Input your name -->
+                                <div class="col-md-4">
+                                    <div class="form-group"> <!-- Your name input -->
+                                        <input type="text" autocomplete="off" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+
+                                <!-- Input your email -->
+                                <div class="col-md-4">
+                                    <div class="form-group"> <!-- Your email input -->
+                                        <input type="email" autocomplete="off" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+
+                                <!-- Input your Phone no. -->
+                                <div class="col-md-4">
+                                    <div class="form-group"> <!-- Your email input -->
+                                        <input type="text" autocomplete="off" class="form-control" placeholder="Your Phone No. *" id="phone" required data-validation-required-message="Please enter your phone no.">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+
+                            </div><!-- end nested inner row -->
 
                         <!-- Message Text area -->
-                        <div class="form-group"> <!-- Your email input -->
-                            <textarea class="form-control" rows="7" placeholder="Tell Us Something..." id="message" required data-validation-required-message="Please enter a message."></textarea>
-                            <p class="help-block text-danger"></p>
-                            <div id="success"></div>
-                        </div>
-                        <button type="submit" class="btn btn-primary tf-btn color">Send Message</button> <!-- Send button -->
+                                <div class="form-group"> <!-- Your email input -->
+                                    <textarea class="form-control" rows="7" placeholder="Tell Us Something..." id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                    <div id="success"></div>
+                                </div>
+                                <button type="submit" class="btn btn-primary tf-btn color">Send Message</button> <!-- Send button -->
 
-                    </form><!-- end form wrapper -->
-                </div><!-- end col 10 with offset 1 to centered -->
-            </div> <!-- end contact form outer row with centered text-->
+                            </form><!-- end form wrapper -->
+                        </div><!-- end col 10 with offset 1 to centered -->
+                    </div> <!-- end contact form outer row with centered text-->
 
-        </div><!-- end container -->
+                </div><!-- end container -->
 
-    </div>
+            </div>
 
