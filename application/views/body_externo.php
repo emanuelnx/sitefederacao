@@ -64,7 +64,7 @@
                                 <i class="fa fa-search-plus"></i>
                             </div>
                             <div class="media-body">
-                                <a href="http://localhost/sitefederacao/historias" target="_blank">
+                                <a href="<?=base_url()?>historias" target="_blank">
                                 <h4 class="media-heading"><strong>HISTORIA DA CBKB </strong></h4>
                                 </a>
                                 <p>A Confederação Brasileira de Kickboxing foi fundada em 1993, durante a realização do 3º Campeonato Brasileiro de Kickboxing, realizado na cidade de Cruz Alta/RS. A Entidade está representada em 18 estados e conta com mais 2.000 Faixas Preta formados e mais de 25.000 filiados desde a sua fundação.</p>
