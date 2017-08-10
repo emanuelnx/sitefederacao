@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php require("header_externo.php");?>
+	<?php require(ABSPATH."application/template/{$template}/head.php");?>
 	<body>
-		<?php require($pagina);?>
+		<?php 
+			require(ABSPATH."application/template/{$template}/nav.php");
+			require($pagina);
+		?>
 	</body>
 	<?php 
-		require("footer_externo.php");
+		require(ABSPATH."application/template/{$template}/footer.php");
 		printAssets('js',$assets);
 	?>
 </html>

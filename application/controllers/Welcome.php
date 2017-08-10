@@ -7,6 +7,7 @@ class Welcome extends CI_Controller {
 
 		$dados = array(
 			'pagina' => 'body_externo.php',
+			'template' => 'site',
 			'tituloPagina' => TITULOPAGINA,
 			'assets' => array()
 		);
