@@ -43,7 +43,7 @@
 			);
 			$this->dbforge->add_key('id',TRUE);
 			$this->dbforge->add_field($colunas);
-			$this->dbforge->create_table($this->tabela);
+			$this->dbforge->create_table($this->tabela,TRUE);
 			// adicionando fk
 			$this->dbforge->add_column($this->tabela,[
 			    'COLUMN id_tipo_usuario INT NOT NULL',
@@ -52,6 +52,6 @@
 		}
 
 		public function down() {
-			$this->dbforge->drop_table($this->tabela);
+			$this->dbforge->drop_table($this->tabela,TRUE);
 		}
 	}

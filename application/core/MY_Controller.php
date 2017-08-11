@@ -8,8 +8,8 @@ class MY_Controller extends CI_Controller {
 
 	public function __construct() {
         parent::__construct();
-        $dadosView['tituloPagina'] = TITULOPAGINA;
-        $dadosView['assets'] = array(
+        $this->dadosView['tituloPagina'] = TITULOPAGINA;
+        $this->dadosView['assets'] = array(
         	'css' => array(),
         	'js' => array(
         		'footer' => array(),

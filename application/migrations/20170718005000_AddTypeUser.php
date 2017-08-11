@@ -33,16 +33,16 @@
 			);
 			$this->dbforge->add_key('id',TRUE);
 			$this->dbforge->add_field($colunas);
-			$this->dbforge->create_table($this->tabela);
+			$this->dbforge->create_table($this->tabela,TRUE);
 			$this->defaultValues();
 		}
 
 		private function defaultValues() {
 			$agora = date('Y-m-d H:i:s');
 			$dados = array(
-	            array('created' => $agora,'descricao' => 'Administrador','status' => 1),
-	            array('created' => $agora,'descricao' => 'root','status' => 1),
-	            array('created' => $agora,'descricao' => 'padrao','status' => 1)
+	            array('created_at' => $agora,'descricao' => 'Administrador','status' => 1),
+	            array('created_at' => $agora,'descricao' => 'root','status' => 1),
+	            array('created_at' => $agora,'descricao' => 'padrao','status' => 1)
 	        );
 
 			$this->db->trans_begin();
@@ -61,6 +61,6 @@
 		}
 
 		public function down() {
-			$this->dbforge->drop_table($this->tabela);
+			$this->dbforge->drop_table($this->tabela,TRUE);
 		}
 	}

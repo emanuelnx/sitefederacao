@@ -38,10 +38,10 @@
 			);
 			$this->dbforge->add_key('id',TRUE);
 			$this->dbforge->add_field($colunas);
-			$this->dbforge->create_table($this->tabela);
+			$this->dbforge->create_table($this->tabela,TRUE);
 		}
 
 		public function down() {
-			$this->dbforge->drop_table($this->tabela);
+			$this->dbforge->drop_table($this->tabela,TRUE);
 		}
 	}
