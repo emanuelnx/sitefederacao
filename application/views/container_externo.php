@@ -9,6 +9,6 @@
 	</body>
 	<?php 
 		require(ABSPATH."/application/template/{$template}/footer.php");
-		printAssets('js',$assets);
+		assetsJs($assets,'footer');
 	?>
 </html>

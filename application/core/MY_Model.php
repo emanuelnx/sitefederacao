@@ -3,7 +3,11 @@
  * Modelo base com funcoes CRUD 
  * https://github.com/waifung0207/ci_bootstrap_3
  *
+ * CONVENÇÕES PARA MODELS
+ * NOME DE MODELS DEVEM SER NO SINGULAR
+ *
  * CONVENÇÕES PARA TABELAS
+ * NOME DE TABELAS DEVEM SER NO SINGULAR
  * TODA TABELA DEVE POSSUIR UM CAMPO created_at e updated_at do tipo datetime
  * TODA TABELA DEVE POSSUIR UM CAMPO chave primaria autoincremento
  */
@@ -39,9 +43,14 @@ class MY_Model extends CI_Model {
     //protected $has_one = array();
     //protected $many_to_many = array();
 
-    public function __construct($db = false) {
+    public function __construct() {
         parent::__construct();
-        $this->_database = (!$db) ? $this->db : $db;
+        $this->_database = $this->db;
+    }
+
+    public function alteraBanco($db) {
+        if (!$db) { return;}
+        $this->_database = $db;
     }
     /* --------------------------------------------------------------
      * CRUD INTERFACE

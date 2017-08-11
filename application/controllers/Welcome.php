@@ -1,17 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends MY_Controller {
+
+	public function __construct() {
+        parent::__construct();
+    }
 
 	public function index() {
 
-		$dados = array(
-			'pagina' => 'body_externo.php',
-			'template' => 'site',
-			'tituloPagina' => TITULOPAGINA,
-			'assets' => array()
-		);
+		$this->dadosView['pagina'] = 'body_externo.php';
+		$this->dadosView['template'] = 'site';
 
-		$this->load->view('container_externo.php',$dados);
+		$this->load->view('container_externo.php',$this->dadosView);
 	}
 }

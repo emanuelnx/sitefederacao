@@ -6,35 +6,28 @@ if (!function_exists('asset_url()')) {
 	}
 }
 
-/**
-* IMPRIME O LINK DE TODOS OS ASSETS DO TIPO INFORMADO NA TELA
-*/
-function printAssets($tipo,$assets) {
-	if (!isset($assets[$tipo])) { return; }
-
-	switch ($tipo) {
-		case 'css':
-			assetsJs($assets['css']);
-			break;
-		case 'js':
-			assetsCss($assets['js']);
-			break;
-	}
-	
-}
-
-function assetsJs($assets) {
-	if (!count($assets)) { return; }
-
-	foreach ($assets as $key => $js) {
-		echo '<script type="text/javascript" src="'.asset_url().'js/'.$js.'"></script>';
+if (!function_exists('upload_url()')) {
+	function upload_url() {
+		return base_url().'assets/upload';
 	}
 }
 
-function assetsCss($assets) {
-	if (!count($assets)) { return; }
+if (!function_exists('assetsJs()')) {
+	function assetsJs($assets,$local = 'footer') {
+		if (!count($assets['js'][$local])) { return; }
 
-	foreach ($assets as $key => $css) {
-		echo '<link rel="stylesheet" type="text/css"  href="'.asset_url().'css/'.$css.'">';
+		foreach ($assets['js'][$local] as $key => $js) {
+			echo '<script type="text/javascript" src="'.asset_url().'js/'.$js.'"></script>';
+		}
+	}
+}
+
+if (!function_exists('assetsCss()')) {
+	function assetsCss($assets) {
+		if (!count($assets['css'])) { return; }
+
+		foreach ($assets['css'] as $key => $css) {
+			echo '<link rel="stylesheet" type="text/css"  href="'.asset_url().'css/'.$css.'">';
+		}
 	}
 }

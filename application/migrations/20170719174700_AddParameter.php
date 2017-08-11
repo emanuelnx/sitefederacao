@@ -13,7 +13,11 @@
 					'type' => 'INT',
 					'auto_increment' => true
 				),
-				'created' => array(
+				'created_at' => array(
+					'type' => 'DATETIME',
+					'null' => FALSE
+				),
+				'updated_at' => array(
 					'type' => 'DATETIME',
 					'null' => FALSE
 				),

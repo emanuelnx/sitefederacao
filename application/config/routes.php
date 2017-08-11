@@ -53,4 +53,12 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['assets/(:any)'] = 'assets/$1';
+//$route['assets/(:any)'] = 'assets/$1';
+
+$route['historias/(:num)']['get'] = "historias/exibirSite";
+$route['admin/historias/(:num)']['get'] = "historias/exibir";
+$route['admin/historias/cadastrar']['get'] = "historias/cadastrar";
+$route['admin/historias']['post'] = "historias/criar";
+$route['admin/historias/editar/(:num)']['get'] = "historias/editar";
+$route['admin/historias/(:num)']['put'] = "historias/atualizar";
+$route['admin/historias/(:num)']['delete'] = "historias/excluir";
