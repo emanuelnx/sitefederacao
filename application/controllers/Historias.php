@@ -21,12 +21,14 @@ class Historias extends MY_Controller {
 	* Exibe as informacoes de um registro especifico.
 	*/
 	public function exibirSite() {
+		$this->load->helper('datas');
 
-		$id = $this->uri->segment(3);
+		$id = $this->uri->segment(2);
 
 		$this->dadosView['historia'] = $this->Historia_model->ache($id);
 		$this->dadosView['pagina'] = 'site/historias.php';
 		$this->dadosView['template'] = 'site';
+
 		$this->load->view('container_externo.php',$this->dadosView);
 	}
 

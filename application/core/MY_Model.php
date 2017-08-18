@@ -40,12 +40,27 @@ class MY_Model extends CI_Model {
      */
     protected $pertence_a = array();
     protected $tem_muitos = array();
+    private $debug = false;
     //protected $has_one = array();
     //protected $many_to_many = array();
 
     public function __construct() {
         parent::__construct();
         $this->_database = $this->db;
+    }
+
+    public function debugar($debug) {
+        $this->debug = $debug;
+    }
+
+    protected function imprimeDebug() {
+        if (!$this->debug) {
+            return;
+        }
+
+        echo '<br><pre>';
+        echo $this->_database->last_query();
+        echo '</pre><hr>';
     }
 
     public function alteraBanco($db) {
@@ -59,7 +74,7 @@ class MY_Model extends CI_Model {
      * retorna uma unica tupla baseada na chave primaria.
      */
     public function ache($pk) {
-        return $this->achePor($this->pk, $pk);
+        return $this->achePor("{$this->pk} = {$pk}");
     }
 
     /**
@@ -67,8 +82,9 @@ class MY_Model extends CI_Model {
      */
     public function achePor($where) {
         $this->criaCondicoes($where);
-        $row = $this->_database->get($this->table,1,1);
-        return $row;
+        $row = $this->_database->get($this->table);
+        $this->imprimeDebug();
+        return $row->result();
     }
 
     /**
@@ -92,6 +108,7 @@ class MY_Model extends CI_Model {
      */
     public function pegueTodos() {
         $row = $this->_database->get($this->table);
+        $this->imprimeDebug();
         return $row;
     }
 
@@ -110,6 +127,7 @@ class MY_Model extends CI_Model {
 
         $this->_database->insert($this->table, $data);
         $insert_id = $this->_database->insert_id();
+        $this->imprimeDebug();
         return $insert_id;
     }
 
@@ -143,6 +161,7 @@ class MY_Model extends CI_Model {
         $result = $this->_database->where($this->pk, $pk)
                            ->set($data)
                            ->update($this->table);
+        $this->imprimeDebug();
         return $result;
     }
 
@@ -160,6 +179,7 @@ class MY_Model extends CI_Model {
         $result = $this->_database->where_in($this->pk, $pks)
                            ->set($data)
                            ->update($this->table);
+        $this->imprimeDebug();
         return $result;
     }
 
@@ -172,7 +192,7 @@ class MY_Model extends CI_Model {
 
         $this->criaCondicoes($condicoes);
         $result = $this->_database->set($data)->update($this->table);
-
+        $this->imprimeDebug();
         return $result;
     }
 
@@ -183,6 +203,7 @@ class MY_Model extends CI_Model {
     public function atualizaTodos($data) {
 
         $result = $this->_database->set($data)->update($this->table);
+        $this->imprimeDebug();
         return $result;
     }
 
@@ -194,6 +215,7 @@ class MY_Model extends CI_Model {
 
         $this->_database->where($this->pk, $id);
         $result = $this->_database->delete($this->table);
+        $this->imprimeDebug();
         return $result;
     }
 
@@ -205,6 +227,7 @@ class MY_Model extends CI_Model {
 
         $this->criaCondicoes($where);
         $result = $this->_database->delete($this->table);
+        $this->imprimeDebug();
         return $result;
     }
 
@@ -216,6 +239,7 @@ class MY_Model extends CI_Model {
 
         $this->_database->where_in($this->pk, $pks);
         $result = $this->_database->delete($this->table);
+        $this->imprimeDebug();
         return $result;
     }
 
@@ -224,6 +248,7 @@ class MY_Model extends CI_Model {
      */
     public function truncate() {
         $result = $this->_database->truncate($this->table);
+        $this->imprimeDebug();
         return $result;
     }
 
@@ -277,14 +302,18 @@ class MY_Model extends CI_Model {
     public function contarPor($where) {
 
         $this->criaCondicoes($where);
-        return $this->_database->count_all_results($this->table);
+        $qtd = $this->_database->count_all_results($this->table);
+        $this->imprimeDebug();
+        return $qtd;
     }
 
     /**
      * Retorna um count de todas as linhas da tabela.
      */
     public function contaTodos() {
-        return $this->_database->count_all($this->table);
+        $qtd = $this->_database->count_all($this->table);
+        $this->imprimeDebug();
+        return $qtd;
     }
 
     /**
