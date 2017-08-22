@@ -4,7 +4,7 @@
 	<body>
 		<?php 
 			require(ABSPATH."/application/template/{$template}/nav.php");
-			require($pagina);
+			require(ABSPATH."/application/views/".$pagina);
 		?>
 	</body>
 	<?php 

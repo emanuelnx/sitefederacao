@@ -16,21 +16,33 @@ if (!function_exists('upload_url()')) {
 }
 
 if (!function_exists('assetsJs()')) {
-	function assetsJs($assets,$local = 'footer') {
-		if (!count($assets['js'][$local])) { return; }
+	function assetsJs($assets,$local = 'footer',$template = '') {
+		if (isset($assets['js']['compartilhado'][$local]) && count($assets['js']['compartilhado'][$local])) {
+			foreach ($assets['js']['compartilhado'][$local] as $key => $js) {
+				echo '<script type="text/javascript" src="'.asset_url().'js/'.$js.'"></script>';
+			}
+		}
 
-		foreach ($assets['js'][$local] as $key => $js) {
-			echo '<script type="text/javascript" src="'.asset_url().'js/'.$js.'"></script>';
+		if (isset($assets['js'][$template][$local]) && count($assets['js'][$template][$local])) {
+			foreach ($assets['js'][$template][$local] as $key => $js) {
+				echo '<script type="text/javascript" src="'.asset_url($template).'js/'.$js.'"></script>';
+			}
 		}
 	}
 }
 
 if (!function_exists('assetsCss()')) {
-	function assetsCss($assets) {
-		if (!count($assets['css'])) { return; }
+	function assetsCss($assets,$template = '') {
+		if (isset($assets['css']['compartilhado']) && count($assets['css']['compartilhado'])) {
+			foreach ($assets['css']['compartilhado'] as $key => $css) {
+				echo '<link rel="stylesheet" type="text/css"  href="'.asset_url().'css/'.$css.'">';
+			}
+		}
 
-		foreach ($assets['css'] as $key => $css) {
-			echo '<link rel="stylesheet" type="text/css"  href="'.asset_url().'css/'.$css.'">';
+		if (isset($assets['css'][$template]) && count($assets['css'][$template])) {
+			foreach ($assets['css'][$template] as $key => $css) {
+				echo '<link rel="stylesheet" type="text/css"  href="'.asset_url($template).'css/'.$css.'">';
+			}
 		}
 	}
 }

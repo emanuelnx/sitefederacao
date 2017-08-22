@@ -12,22 +12,33 @@ class MY_Controller extends CI_Controller {
         $this->dadosView['erro'] = false;
         $this->dadosView['sucesso'] = false;
         $this->dadosView['assets'] = array(
-        	'css' => array(),
+        	/*'css' => array(),
         	'js' => array(
         		'footer' => array(),
         		'head' => array()
-        	),
+        	),*/
         );
     }
 
-	protected function addJs($arquivos, $local = 'foot') {
+	protected function addJs($arquivos, $local = 'footer',$template = false) {
 		$arquivos = is_string($arquivos) ? array($arquivos) : $arquivos;
-		$local = ($local === 'head' || $local === 'foot') ? $local : 'foot';
-		$this->dadosView['assets']['js'][$local] = $arquivos;
+		$local = ($local === 'head' || $local === 'footer') ? $local : 'footer';
+
+        if ($template) {
+            $this->dadosView['assets']['js'][$template][$local] = $arquivos;
+        } else {
+            $this->dadosView['assets']['js']['compartilhado'][$local] = $arquivos;
+        }
+        
 	}
 
-	protected function addCss($arquivos) {
+	protected function addCss($arquivos,$template = false) {
 		$arquivos = is_string($arquivos) ? array($arquivos) : $arquivos;
-		$this->dadosView['assets']['css'] = $arquivos;
+
+        if ($template) {
+            $this->dadosView['assets'][$template]['css'] = $arquivos;
+        } else {
+            $this->dadosView['assets']['compartilhado']['css'] = $arquivos;
+        }
 	}
 }

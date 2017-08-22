@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
- * User class.
+ * classe Usuarios.
  * 
- * @extends CI_Controller
+ * @extends MY_Controller
  */
 class Usuarios extends MY_Controller {
 	/**
@@ -13,10 +13,8 @@ class Usuarios extends MY_Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		
 		parent::__construct();
 		$this->load->model('Usuario_model');
-		
 	}
 
 	public function index() {
@@ -35,13 +33,19 @@ class Usuarios extends MY_Controller {
 		$this->load->library('form_validation');
 		
 		// set validation rules
-		$this->form_validation->set_rules('login', 'login', 'trim|required|alpha_numeric|min_length[4]|is_unique[users.login]', array('is_unique' => 'This login already exists. Please choose another one.'));
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
+		$this->form_validation->set_rules('login', 'login', 'trim|required|alpha_numeric|min_length[4]|is_unique[usuario.login]', array('is_unique' => 'Este usuário já existe. Por favor, escolha outro.'));
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[usuario.email]');
 		$this->form_validation->set_rules('senha', 'senha', 'trim|required|min_length[6]');
 		$this->form_validation->set_rules('senha_confirm', 'Confirm senha', 'trim|required|min_length[6]|matches[senha]');
 		
-		$this->dadosView['pagina'] = 'user/register/register';
+		$this->dadosView['pagina'] = 'usuario/register/register.php';
 		$this->dadosView['template'] = 'site';
+		$this->addJs(
+			array('jquery.1.11.1.js', 'bootstrap.js'), 
+			'footer', 
+			$this->dadosView['template']
+		);
+
 		if ($this->form_validation->run() !== false) {
 
 			// set variables from the form
@@ -64,7 +68,6 @@ class Usuarios extends MY_Controller {
 	 * @return void
 	 */
 	public function login() {
-		
 		// create the data object
 		$data = new stdClass();
 		
@@ -79,9 +82,10 @@ class Usuarios extends MY_Controller {
 		if ($this->form_validation->run() == false) {
 			
 			// validation not ok, send validation errors to the view
-			$this->load->view('header');
-			$this->load->view('user/login/login');
-			$this->load->view('footer');
+			$this->dadosView['pagina'] = 'usuario/login/login.php';
+			$this->dadosView['template'] = 'site';
+
+			$this->load->view('container_externo.php',$this->dadosView);
 			
 		} else {
 			
@@ -102,20 +106,20 @@ class Usuarios extends MY_Controller {
 				$_SESSION['is_admin']     = (bool)$user->is_admin;
 				
 				// user login ok
-				$this->load->view('header');
-				$this->load->view('user/login/login_success', $data);
-				$this->load->view('footer');
+				$this->dadosView['pagina'] = 'usuario/login/login_success.php';
+				$this->dadosView['template'] = 'admin';
+				$this->load->view('admin/container.php',$this->dadosView);
 				
 			} else {
 				
 				// login failed
-				$data->error = 'Wrong login or senha.';
+				$this->dadosView['erro'] = 'Login ou senha incorretos.';
 				
 				// send error to the view
-				$this->load->view('header');
-				$this->load->view('user/login/login', $data);
-				$this->load->view('footer');
-				
+				$this->dadosView['pagina'] = 'usuario/login/login.php';
+				$this->dadosView['template'] = 'site';
+
+				$this->load->view('container_externo.php',$this->dadosView);	
 			}
 			
 		}
@@ -141,9 +145,10 @@ class Usuarios extends MY_Controller {
 			}
 			
 			// user logout ok
-			$this->load->view('header');
-			$this->load->view('user/logout/logout_success', $data);
-			$this->load->view('footer');
+			$this->dadosView['pagina'] = 'usuario/logout/logout_success.php';
+			$this->dadosView['template'] = 'site';
+
+			$this->load->view('container_externo.php',$this->dadosView);
 		} else {
 			// there user was not logged in, we cannot logged him out,
 			// redirect him to site root
