@@ -14,12 +14,19 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#tf-home"    class="scroll">Home</a></li>
-            <li><a href="#tf-about"   class="scroll">Historia</a></li>
-            <li><a href="#tf-team"    class="scroll">Patrocinios</a></li>
-            <li><a href="#tf-blog"    class="scroll">Blog</a></li>
+            <li><a href="#tf-home" class="scroll">Home</a></li>
+            <?php   if(isset($historias) && count($historias)) { ?>
+                        <li><a href="#tf-about" class="scroll">Historia</a></li>
+            <?php   } ?>
+            <li><a href="#tf-team" class="scroll">Patrocinios</a></li>
+            <li><a href="#tf-blog" class="scroll">Blog</a></li>
             <li><a href="#tf-contact" class="scroll">Contato</a></li>
-            <li><a href="<?=base_url('login')?>" class="scroll">Login</a></li>
+            <?php   if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) { ?>
+                        <li><a href="<?=base_url('logout')?>" class="scroll">Sair</a></li>
+            <?php   } else { ?>
+                        <li><a href="<?=base_url('login')?>" class="scroll">Entrar</a></li>
+                        <li><a href="<?=base_url('registrar')?>" class="scroll">Registrar-se</a></li>
+            <?php   } ?>
           </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

@@ -109,7 +109,7 @@ class MY_Model extends CI_Model {
     public function pegueTodos() {
         $row = $this->_database->get($this->table);
         $this->imprimeDebug();
-        return $row;
+        return $row->result();
     }
 
     /**

@@ -51,61 +51,31 @@
             </div><!-- End Overlay Color -->
         </div>
 
-        <!-- Inicio historia -->
-         <div id="tf-about" class="gray-bg"> <!-- fullwidth gray background -->
-            <div class="container"><!-- container -->
-                <div class="vline"></div> <!--  Vertical Line -->
-                <div id="process" class="row"> <!-- row -->
-
-                    <div class="col-md-10 col-md-offset-1">
-
-                        <div class="media process"> <!-- Process #1 -->
-                            <div class="media-right media-middle">
-                                <i class="fa fa-search-plus"></i>
-                            </div>
-                            <div class="media-body">
-                                <a href="<?=base_url()?>historias" target="_blank">
-                                <h4 class="media-heading"><strong>HISTORIA DA CBKB </strong></h4>
-                                </a>
-                                <p>A Confederação Brasileira de Kickboxing foi fundada em 1993, durante a realização do 3º Campeonato Brasileiro de Kickboxing, realizado na cidade de Cruz Alta/RS. A Entidade está representada em 18 estados e conta com mais 2.000 Faixas Preta formados e mais de 25.000 filiados desde a sua fundação.</p>
-                            </div>
-                        </div><!-- Process #1 -->
-
-                        <div class="media process"> <!-- Process #2 -->
-                            <div class="media-right media-middle">
-                                <i class="fa fa-wrench"></i>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">HISTORIA DO KICKBOXING PIAUIENSE</h4>
-                                <p>O kickboxing Piauiense foi trazido ao estado pelo Professor Giovanni Pereira em meados de 2005 quando em visita a seus mestres Adriano Dutra e Alexander Terra em Colatina-ES em evento Nacional de Jeet Kune Do, modalidade que praticava anteriormente conheceu Mestre Renato Lima em uma apresentação na praça de eventos de Colatina.</p>
-                            </div>
-                        </div><!-- Process #2 -->
-
-                        <div class="media process"> <!-- Process #3 -->
-                            <div class="media-right media-middle">
-                                <i class="fa fa-flask"></i>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Testing and Refine</h4>
-                                <p>Ultrices lacus proin conubia dictum tempus, tempor pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est ut cubilia nec, fermentum arcu praesent, pede etiam. Tempor vestibulum turpis id ligula mi mattis. Eget arcu vitae mauris amet odio.</p>
-                            </div>
-                        </div><!-- Process #3 -->
-
-                        <div class="media process"> <!-- Process #4 -->
-                            <div class="media-right media-middle">
-                                <i class="fa fa-truck"></i>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Launch</h4>
-                                <p>Ultrices lacus proin conubia dictum tempus, tempor pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est ut cubilia nec, fermentum arcu praesent, pede etiam. Tempor vestibulum turpis id ligula mi mattis. Eget arcu vitae mauris amet odio.</p>
-                            </div>
-                        </div><!-- Process #4 -->
-                        
+        <?php if(isset($historias) && count($historias)) { ?>
+            <!-- Inicio historia -->
+            <div id="tf-about" class="gray-bg"> <!-- classe que coloca o background totalmente cinza -->
+                <div class="container">
+                    <div class="vline"></div> <!--  Cria uma linha vertical -->
+                    <div id="process" class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                        <?php   foreach ($historias as $key => $historia) { ?>
+                                    <div class="media process"> <!-- Process #1 -->
+                                        <div class="media-right media-middle">
+                                            <i class="fa fa-search-plus"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <a href="<?=base_url("historias/{$historia->id}")?>" target="_blank">
+                                            <h4 class="media-heading"><strong><?=$historia->titulo?></strong></h4>
+                                            </a>
+                                            <p><?=$historia->conteudo?></p>
+                                        </div>
+                                    </div>
+                        <?php   } ?>                        
+                        </div>
                     </div>
-
-                </div> <!-- end row -->
-            </div><!-- end container -->
-        </div>  <!-- end fullwidth gray background -->
+                </div>
+            </div>
+        <?php } ?>
     </div>
 
 

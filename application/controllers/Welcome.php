@@ -8,7 +8,9 @@ class Welcome extends MY_Controller {
     }
 
 	public function index() {
+		$this->load->model(array("Historia_model"));
 
+		$this->dadosView['historias'] = $this->Historia_model->pegueTodos();
 		$this->dadosView['pagina'] = 'body_externo.php';
 		$this->dadosView['template'] = 'site';
 		$this->addJs(

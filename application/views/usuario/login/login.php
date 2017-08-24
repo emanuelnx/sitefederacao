@@ -33,5 +33,5 @@
 				</div>
 			</form>
 		</div>
-	</div><!-- .row -->
-</div><!-- .container -->
+	</div>
+</div>

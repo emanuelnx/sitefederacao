@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php require(ABSPATH."/application/template/{$template}/head.php");?>
+	<?php require(APPPATH."template/{$template}/head.php");?>
 	<body>
 		<?php 
-			require(ABSPATH."/application/template/{$template}/nav.php");
-			require(ABSPATH."/application/views/".$pagina);
+			require(APPPATH."template/{$template}/nav.php");
+			require(APPPATH."views/".$pagina);
 		?>
 	</body>
 	<?php 
-		require(ABSPATH."/application/template/{$template}/footer.php");
+		require(APPPATH."template/{$template}/footer.php");
 		assetsJs($assets,'footer');
 	?>
 </html>

@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * 
  * @extends CI_Model
  */
-class Usuario_model extends CI_Model {
+class Usuario_model extends MY_Model {
 	/**
 	 * __construct function.
 	 * 
@@ -13,96 +13,84 @@ class Usuario_model extends CI_Model {
 	 * @return void
 	 */
 	public function __construct() {
+		$this->table = 'usuario';
 		parent::__construct();
-		$this->load->database();
 	}
-	
+
 	/**
-	 * create_user function.
+	 * Validacoes para registro de usuario.
 	 * 
 	 * @access public
-	 * @param mixed $login
-	 * @param mixed $email
-	 * @param mixed $senha
-	 * @return bool true on success, false on failure
+	 * @return void
 	 */
-	public function create_user($login, $email, $senha) {
+	public function validacoesRegistrar() {
+
+		$this->load->library('form_validation');
 		
-		$data = array(
-			'id_tipo_usuario' => 1,
-			'login' => $login,
-			'email' => $email,
-			'senha' => $this->hash_senha($senha),
-			'created_at' => date('Y-m-j H:i:s'),
+		// configurando regras de validacao
+		$this->form_validation->set_rules(
+			'login', 
+			'login', 
+			'trim|required|alpha_numeric|min_length[4]|is_unique[usuario.login]',
+			array(
+				'is_unique' => 'Este usuário já existe.',
+				'required' => 'Login é obrigatório',
+				'min_length' => 'Login não pode possuir menos de 4 caracteres',
+				'alpha_numeric' => 'Apenas letras e números são aceitos.'
+			)
 		);
-		
-		return $this->db->insert('usuario', $data);
+		$this->form_validation->set_rules(
+			'email',
+			'Email',
+			'trim|required|valid_email|is_unique[usuario.email]',
+			array(
+				'is_unique' => 'E-mail já cadastrado. Por favor, escolha outro.',
+				'valid_email' => 'Formato do e-mail inválido.',
+				'required' => 'E-mail é obrigatório.'
+			)
+		);
+		$this->form_validation->set_rules(
+			'senha',
+			'senha',
+			'trim|required|min_length[6]',
+			array(
+				'min_length' => 'Senha deve possuir no mínimo 6 caracteres.',
+				'required' => 'Senha é obrigatória.'
+			)
+		);
+		$this->form_validation->set_rules(
+			'senha_confirm',
+			'Confirm senha',
+			'trim|required|min_length[6]|matches[senha]',
+			array(
+				'matches' => 'Senha e Confimação de senha devem ser iguais.',
+				'required' => 'Confimação de senha é obrigatória.'
+			)
+		);
+
+		return $this->form_validation->run();
 	}
 	
 	/**
-	 * resolve_user_login function.
+	 * validacoes para login de usuario.
 	 * 
 	 * @access public
-	 * @param mixed $login
-	 * @param mixed $senha
-	 * @return bool true on success, false on failure
-	 */
-	public function resolve_user_login($login, $senha) {
-		$this->db->select('senha');
-		$this->db->from('usuario');
-		$this->db->where('login', $login);
-		$hash = $this->db->get()->row('senha');
-		
-		return $this->verify_senha_hash($senha, $hash);
-	}
-	
-	/**
-	 * get_user_id_from_login function.
-	 * 
-	 * @access public
-	 * @param mixed $login
-	 * @return int the user id
-	 */
-	public function get_user_id_from_login($login) {
-		$this->db->select('id');
-		$this->db->from('usuario');
-		$this->db->where('login', $login);
-		return $this->db->get()->row('id');
-	}
-	
-	/**
-	 * get_user function.
-	 * 
-	 * @access public
-	 * @param mixed $user_id
-	 * @return object the user object
-	 */
-	public function get_user($user_id) {
-		$this->db->from('usuario');
-		$this->db->where('id', $user_id);
-		return $this->db->get()->row();
-	}
-	
-	/**
-	 * hash_senha function.
-	 * 
-	 * @access private
-	 * @param mixed $senha
-	 * @return string|bool could be a string on success, or bool false on failure
-	 */
-	private function hash_senha($senha) {
-		return password_hash($senha, PASSWORD_BCRYPT);
-	}
-	
-	/**
-	 * verify_senha_hash function.
-	 * 
-	 * @access private
-	 * @param mixed $senha
-	 * @param mixed $hash
 	 * @return bool
 	 */
-	private function verify_senha_hash($senha, $hash) {
-		return password_verify($senha, $hash);
+	public function validacoesLogar() {
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules(
+			'login',
+			'login',
+			'required|alpha_numeric',
+			array(
+				'required' => 'Login é obrigatório',
+				'alpha_numeric' => 'Apenas letras e números são aceitos.'
+			)
+		);
+		$this->form_validation->set_rules('senha', 'senha', 'required', array('required' => 'Senha é obrigatória'));
+		
+		return $this->form_validation->run();
 	}
 }
