@@ -50,7 +50,11 @@ class Historias extends MY_Controller {
 		// implementar
 	}
 	public function cadastrar() {
-		// implementar
+
+		$this->dadosView['pagina'] = 'admin/cadastroHistorias.php';
+		$this->dadosView['template'] = 'admin';
+
+		$this->load->view('admin/container.php',$this->dadosView);
 	}
 	public function criar() {
 		// implementar
