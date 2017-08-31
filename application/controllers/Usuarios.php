@@ -69,7 +69,6 @@ class Usuarios extends MY_Controller {
 			// validacao falhou, envia os erros para a view
 			$this->dadosView['pagina'] = 'usuario/login/login.php';
 			$this->dadosView['template'] = 'site';
-
 			$this->load->view('container_externo.php',$this->dadosView);
 			
 		} else {

@@ -14,6 +14,7 @@ class Historias extends MY_Controller {
 	public function __construct() {
         parent::__construct();
         $this->load->model(array("Historia_model"));
+		$this->load->helper('datas');
     }
 
 	/**
@@ -21,7 +22,6 @@ class Historias extends MY_Controller {
 	* Exibe as informacoes de um registro especifico.
 	*/
 	public function exibirSite() {
-		$this->load->helper('datas');
 
 		$id = $this->uri->segment(2);
 
@@ -40,14 +40,19 @@ class Historias extends MY_Controller {
 		if (isset($_SESSION['logado']) && $_SESSION['logado'] == 1) {
 			$this->dadosView['pagina'] = 'admin/historias.php';
 			$this->dadosView['template'] = 'admin';
-			$this->load->view('container_externo.php',$this->dadosView);
+			$this->load->view('admin/container.php',$this->dadosView);
 		} else {
 			$this->exibirSite();
 		}
 	}
 
 	public function exibir() {
-		// implementar
+
+		$this->dadosView['historias'] = $this->Historia_model->pegueTodos();
+		$this->dadosView['pagina'] = 'admin/listagemHistorias.php';
+		$this->dadosView['template'] = 'admin';
+
+		$this->load->view('admin/container.php',$this->dadosView);
 	}
 	public function cadastrar() {
 
