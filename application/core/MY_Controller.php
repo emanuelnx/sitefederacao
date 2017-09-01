@@ -7,6 +7,7 @@ class MY_Controller extends CI_Controller {
 
 	public function __construct() {
         parent::__construct();
+        session_start();
         $this->dadosView['tituloPagina'] = TITULOPAGINA;
         $this->dadosView['erro'] = false;
         $this->dadosView['sucesso'] = false;
@@ -17,6 +18,33 @@ class MY_Controller extends CI_Controller {
         		'head' => array()
         	),*/
         );
+
+        $this->setMensagens();
+    }
+
+    /**
+    * Seta os valores de sucesso e erro no array que eh enviado para a view.
+    */
+    private function setMensagens() {
+        if (isset($_SESSION['erro'])) {
+            $this->dadosView['erro'] = $_SESSION['erro'];
+            unset($_SESSION['erro']);
+        }
+
+        if (isset($_SESSION['sucesso'])) {
+            $this->dadosView['sucesso'] = $_SESSION['sucesso'];
+            unset($_SESSION['sucesso']);
+        }
+    }
+
+    protected function ehAdmin() {
+        return (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1) ? true : false;
+    }
+
+    protected function paginaAdministrativa() {
+        if (!$this->ehAdmin()) {
+            show_404();
+        }
     }
 
 	protected function addJs($arquivos, $local = 'footer',$template = false) {

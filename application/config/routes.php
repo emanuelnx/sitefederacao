@@ -5,7 +5,15 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-//$route['assets/(:any)'] = 'assets/$1';
+/**
+controller[get] => controller/index
+controller/(:num)[get] => controller/exibir
+controller/cadastrar[get] => controller/cadastar
+controller/criar[post] => controller/criar
+controller/editar[post] => controller/editar
+controller/atualizar[post] => controller/atualizar
+controller/excluir[post] => controller/excluir
+*/
 
 // usuario - login - logoff - registrar
 $route['login']['get'] 		= "usuarios/login"; // tela de login
@@ -14,11 +22,16 @@ $route['registrar']['get'] 	= "usuarios/register"; // tela de registro
 $route['registrar']['post'] = "usuarios/register"; // efetuar o registro
 $route['logout']['get'] 	= "usuarios/logout"; // efetuar o logoff
 
+// Home Administrativa
+$route['admin']['get'] = "admin/index";
+
 // historias
-$route['historias/(:num)']['get'] = "historias/exibirSite";
+$route['historias/(:num)']['get'] = "historias/exibir";
+
+$route['admin/historias']['get'] = "historias/index";
 $route['admin/historias/(:num)']['get'] = "historias/exibir";
 $route['admin/historias/cadastrar']['get'] = "historias/cadastrar";
-$route['admin/historias']['post'] = "historias/criar";
-$route['admin/historias/editar/(:num)']['get'] = "historias/editar";
-$route['admin/historias/(:num)']['put'] = "historias/atualizar";
-$route['admin/historias/(:num)']['delete'] = "historias/excluir";
+$route['admin/historias/criar']['post'] = "historias/criar";
+$route['admin/historias/editar']['post'] = "historias/editar";
+$route['admin/historias/atualizar']['post'] = "historias/atualizar";
+$route['admin/historias/excluir']['post'] = "historias/excluir";

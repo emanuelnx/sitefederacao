@@ -1,9 +1,4 @@
 
-
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         Painel de controle
@@ -516,9 +511,4 @@
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->
-
     </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  

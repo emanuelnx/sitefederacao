@@ -3,10 +3,10 @@
  * Modelo base com funcoes CRUD 
  * https://github.com/waifung0207/ci_bootstrap_3
  *
- * CONVENÇÕES PARA MODELS
+ * CONVENÃ‡Ã•ES PARA MODELS
  * NOME DE MODELS DEVEM SER NO SINGULAR
  *
- * CONVENÇÕES PARA TABELAS
+ * CONVENÃ‡Ã•ES PARA TABELAS
  * NOME DE TABELAS DEVEM SER NO SINGULAR
  * TODA TABELA DEVE POSSUIR UM CAMPO created_at e updated_at do tipo datetime
  * TODA TABELA DEVE POSSUIR UM CAMPO chave primaria autoincremento

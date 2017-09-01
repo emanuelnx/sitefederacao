@@ -14,63 +14,85 @@ class Historias extends MY_Controller {
 	public function __construct() {
         parent::__construct();
         $this->load->model(array("Historia_model"));
-		$this->load->helper('datas');
+		$this->load->helper(array('datas'));
+		$this->dadosView['template'] = 'admin';
     }
 
-	/**
-	* metodo especifico para o layout site
-	* Exibe as informacoes de um registro especifico.
-	*/
-	public function exibirSite() {
-
-		$id = $this->uri->segment(2);
-
-		$this->dadosView['historia'] = $this->Historia_model->ache($id);
-		$this->dadosView['pagina'] = 'site/historias.php';
-		$this->dadosView['template'] = 'site';
-
-		$this->load->view('container_externo.php',$this->dadosView);
-	}
-
-	/*********************************************************/
-	/*             Metodos especificos do admin              */
-	/*********************************************************/
-
 	public function index() {
-		if (isset($_SESSION['logado']) && $_SESSION['logado'] == 1) {
-			$this->dadosView['pagina'] = 'admin/historias.php';
-			$this->dadosView['template'] = 'admin';
-			$this->load->view('admin/container.php',$this->dadosView);
-		} else {
-			$this->exibirSite();
-		}
+		$this->paginaAdministrativa();
+
+		$this->dadosView['historias'] = $this->Historia_model->pegueTodos();
+		$this->dadosView['pagina'] = 'admin/historias/index.php';
+		$this->load->view('admin/container.php',$this->dadosView);
 	}
 
 	public function exibir() {
+		$id = $this->uri->segment(2);
+		if (empty($id)) {
+			show_404();
+		}
 
-		$this->dadosView['historias'] = $this->Historia_model->pegueTodos();
-		$this->dadosView['pagina'] = 'admin/listagemHistorias.php';
-		$this->dadosView['template'] = 'admin';
+		$this->dadosView['historia'] = $this->Historia_model->ache($id);
 
-		$this->load->view('admin/container.php',$this->dadosView);
+		if ($this->ehAdmin()) {
+			$this->dadosView['pagina'] = 'admin/historias/index.php';
+			$this->load->view('admin/container.php',$this->dadosView);
+		} else {
+			$this->dadosView['pagina'] = 'site/historias.php';
+			$this->dadosView['template'] = 'site';
+			$this->load->view('container_externo.php',$this->dadosView);
+		}
 	}
+
 	public function cadastrar() {
+		$this->paginaAdministrativa();
 
-		$this->dadosView['pagina'] = 'admin/cadastroHistorias.php';
-		$this->dadosView['template'] = 'admin';
+		$this->dadosView['action'] = base_url("historias");
+		$this->dadosView['btnSubmit'] = 'Cadastrar';
+		$this->dadosView['pagina'] = 'admin/historias/_form.php';
 
 		$this->load->view('admin/container.php',$this->dadosView);
 	}
+
 	public function criar() {
+		$this->paginaAdministrativa();
 		// implementar
+		echo 'criar';
 	}
+
 	public function editar() {
-		// implementar
+		$this->paginaAdministrativa();
+		$id = $this->input->post('id');
+
+		$this->dadosView['action'] = base_url("historias/atualizar");
+		$this->dadosView['btnSubmit'] = 'Atualizar';
+		$this->dadosView['historia'] = $this->Historia_model->ache($id);
+		$this->dadosView['pagina'] = 'admin/historias/_form.php';
+
+		$this->load->view('admin/container.php',$this->dadosView);
 	}
+
 	public function atualizar() {
-		// implementar
+		$this->paginaAdministrativa();
+		$id = $this->input->post('id');
+		$dados = array(
+			'titulo' => $this->input->post('titulo'),
+			'status' => $this->input->post('status'),
+			'conteudo' => $this->input->post('conteudo')
+		);
+
+		if ($this->Historia_model->atualiza($id, $dados)) {
+        	$_SESSION['sucesso'] = "História atualizada com sucesso";
+		} else {
+			$_SESSION['erro'] = "Erro ao atualizar histótia! contate o administrador do sistema.";
+		}
+		redirect(base_url("historias"));
 	}
+
 	public function excluir() {
-		// implementar
+		$this->paginaAdministrativa();
+		$id = $this->input->post('id');
+		// implementarSSS
+		echo 'excluir '.$id;
 	}
 }
