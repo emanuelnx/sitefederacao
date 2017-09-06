@@ -9,7 +9,7 @@ class Admin extends MY_Controller {
     }
 
 	public function index() {
-		$this->dadosView['pagina'] = 'admin/admin_index.php';
+		$this->dadosView['pagina'] = 'admin/index.php';
 		$this->dadosView['template'] = 'admin';
 
 		$this->load->view('admin/container.php',$this->dadosView);
