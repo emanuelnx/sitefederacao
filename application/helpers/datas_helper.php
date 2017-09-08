@@ -34,4 +34,24 @@
             return implode('/', array_reverse(explode('-', $data)));
         }
     }
+
+    if (!function_exists('compararDatas')) {
+        /**
+        * verifica se a dataInicio é maior,menor ou igual a dataComparacao.
+        * @param date, date
+        * @return 
+        */
+        function compararDatas($dtInicio, $dtComparacao, $formato = "Y-m-d"){
+
+            $dtComparacao = date($formato, strtotime($dtComparacao));
+
+            if ( strtotime($dtInicio) > strtotime($dtComparacao) ) {
+                return 1; // "maior"
+            } elseif ( strtotime($dtInicio) < strtotime($dtComparacao) ) { 
+                return -1; // "menor"
+            }else {
+                return 0; // "igual"
+            }
+        }
+    }
 ?>
