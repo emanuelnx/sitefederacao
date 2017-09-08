@@ -2,7 +2,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2017-<?=date('M')?> <a href="">Davi e Emanuel</a>.</strong>
+    <strong>Copyright &copy; 2017-<a href="">Davi e Emanuel</a>.</strong>
    
 </footer>
 

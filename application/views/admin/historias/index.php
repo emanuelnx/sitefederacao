@@ -1,9 +1,9 @@
 
     <div class="box">
-        <a href="<?=base_url('admin/historias/cadastrar')?>" class="btn btn-primary pull-right h2">Novo Item</a>
         <div id="list" class="row"> 
 
             <div class="table-responsive col-md-12">
+             <a href="<?=base_url('admin/historias/cadastrar')?>" class="btn btn-primary pull-right h2">Novo Item</a>
                 <table class="table table-striped" cellspacing="0" cellpadding="0">
                     <thead>
                         <tr>
@@ -23,7 +23,7 @@
                                     <!-- <td>Emanuel</td> -->
                                     <td><?=dataHoraBrasileira($historia->created_at)?></td>
                                     <td><?=($historia->status) ? 'ATIVO' : 'INATIVO';?></td>
-                                    <td class="actions">
+                                    <td class="actions" WIDTH="200" HEIGHT="30">
                                         <a class="btn btn-success btn-xs pull-left" href="view.html">Exibir</a>
                                         <form action="<?=base_url("historias/editar");?>" method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="id" value="<?=$historia->id?>">
