@@ -29,7 +29,7 @@ $route['admin']['get'] = "admin/index";
 $route['historias/(:num)']['get'] = "historias/exibir";
 
 $route['admin/historias']['get'] = "historias/index";
-$route['admin/historias/(:num)']['get'] = "historias/exibir";
+$route['admin/historias/exibir/(:num)']['get'] = "historias/exibir";
 $route['admin/historias/cadastrar']['get'] = "historias/cadastrar";
 $route['admin/historias/criar']['post'] = "historias/criar";
 $route['admin/historias/editar']['post'] = "historias/editar";

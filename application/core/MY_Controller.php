@@ -9,6 +9,7 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
         session_start();
         $this->dadosView['tituloPagina'] = TITULOPAGINA;
+        $this->dadosView['info'] = false;
         $this->dadosView['erro'] = false;
         $this->dadosView['sucesso'] = false;
         $this->dadosView['assets'] = array(
@@ -34,6 +35,11 @@ class MY_Controller extends CI_Controller {
         if (isset($_SESSION['sucesso'])) {
             $this->dadosView['sucesso'] = $_SESSION['sucesso'];
             unset($_SESSION['sucesso']);
+        }
+
+        if (isset($_SESSION['info'])) {
+            $this->dadosView['info'] = $_SESSION['info'];
+            unset($_SESSION['info']);
         }
     }
 

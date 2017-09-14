@@ -223,7 +223,7 @@ class MY_Model extends CI_Model {
      * Deleta uma tupla da tabela utilizando uma clausa arbitraria
      * @param mixed $condicoes - condicoes para serem utilizadas no where.
      */
-    public function delete_by($where) {
+    public function deletar_por($where) {
 
         $this->criaCondicoes($where);
         $result = $this->_database->delete($this->table);
@@ -235,7 +235,7 @@ class MY_Model extends CI_Model {
      * Deleta variastuplas baseando-se nas chaves primarias.
      * @param array $pks - array de id's.
      */
-    public function delete_many($pks) {
+    public function deletar_varios($pks) {
 
         $this->_database->where_in($this->pk, $pks);
         $result = $this->_database->delete($this->table);

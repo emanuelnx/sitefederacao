@@ -88,9 +88,6 @@ class Usuarios extends MY_Controller {
 				$_SESSION['logged_in'] = (bool)true;
 
 				redirect(base_url("admin"));
-				/*$this->dadosView['pagina'] = 'admin/index.php';
-				$this->dadosView['template'] = 'admin';
-				$this->load->view('admin/container.php',$this->dadosView);*/
 				
 			} else {				
 				// login falhou
