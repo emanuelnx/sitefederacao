@@ -75,7 +75,7 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-laptop"></i>
+            <i class="fa fa-handshake-o"></i>
             <span>Patrocinadores</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>

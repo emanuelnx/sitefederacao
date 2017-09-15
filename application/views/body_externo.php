@@ -52,7 +52,6 @@
         </div>
 
         <?php if(isset($historias) && count($historias)) { ?>
-            <!-- Inicio historia -->
             <div id="tf-about" class="gray-bg"> <!-- classe que coloca o background totalmente cinza -->
                 <div class="container">
                     <div class="vline"></div> <!--  Cria uma linha vertical -->
@@ -76,115 +75,39 @@
                 </div>
             </div>
         <?php } ?>
-    </div>
 
-
-    <!-- Team Section
-        ================================================== -->
-        <div id="tf-team">
-            <div class="container"> <!-- container -->
-                <div class="section-header">
-                    <h2>No time de patrocinadores <span class="highlight"><strong>TIME</strong></span></h2>
-                    <h5><em>Venha, entre para esse time.</em></h5>
-                    <div class="fancy"><span><img src="<?=IMAGENS?>favicon.ico" alt="..."></span></div>
+        <?php if(isset($patrocinadores) && count($patrocinadores)) { ?>
+            <div id="tf-team">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>No time de patrocinadores <span class="highlight"><strong>TIME</strong></span></h2>
+                        <h5><em>Venha, entre para esse time.</em></h5>
+                        <div class="fancy"><span><img src="<?=IMAGENS?>favicon.ico" alt="..."></span></div>
+                    </div>
+                    <div id="team" class="owl-carousel owl-theme text-center">
+                        <?php   foreach ($patrocinadores as $key => $patrocinador) { ?>
+                                    <div class="item">
+                                        <div class="hover-bg">
+                                            <div class="hover-text off">
+                                                <p><?=$patrocinador->conteudo?></p>
+                                            </div>
+                                            <img src="<?=$patrocinador->imagem?>" alt="<?=$patrocinador->titulo?>" class="img-responsive">
+                                            <div class="team-detail text-center">
+                                                <h3><?=$patrocinador->titulo?></h3>
+                                                <p class="text-uppercase"><?=$patrocinador->subtitulo?></p>
+                                                <ul class="list-inline social"> 
+                                                    <li><a href="#" class="fa fa-facebook"></a></li>
+                                                    <li><a href="#" class="fa fa-twitter"></a></li>
+                                                    <li><a href="#" class="fa fa-google-plus"></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                        <?php   } ?>
+                    </div>
                 </div>
-
-                 <div id="team" class="owl-carousel owl-theme text-center"> <!-- team carousel wrapper -->
-
-                    <div class="item"><!-- Team #1 -->
-                        <div class="hover-bg"> <!-- Team Wrapper -->
-                            <div class="hover-text off"> <!-- Hover Description -->
-                                <p>Referencia em equipamentos para atletas em geral. Produtos de qualidade, com representação a nivel estadual.</p>
-                            </div><!-- End Hover Description -->
-                            <img src="<?=IMAGENS?>team/01.png" alt="..." class="img-responsive"> <!-- Team Image -->
-                            <div class="team-detail text-center">
-                                <h3>Kimono & Cia</h3>
-                                <p class="text-uppercase">Nutrydiet</p>
-                                <ul class="list-inline social"> 
-                                    <li><a href="#" class="fa fa-facebook"></a></li> <!-- facebook link here -->
-                                    <li><a href="#" class="fa fa-twitter"></a></li> <!-- twitter link here -->
-                                    <li><a href="#" class="fa fa-google-plus"></a></li> <!-- google plus link here -->
-                                </ul>
-                            </div>
-                        </div><!-- End Team Wrapper -->
-                    </div><!-- End Team #1 -->
-
-                    <div class="item"> <!-- Team #2 -->
-                        <div class="hover-bg"> <!-- Team Wrapper -->
-                            <div class="hover-text off"> <!-- Hover Description -->
-                                <p>Entre em contato e veja a melhor forma para anuncio em nosso site.</p>
-                            </div> <!-- End Hover Description -->
-                            <img src="<?=IMAGENS?>team/anuncie.png" alt="..." class="img-responsive"><!-- Team Image -->
-                            <div class="team-detail text-center">
-                                <h3>Anuncie aqui</h3>
-                                <p class="text-uppercase">Seja Patrocinador</p>
-                                <ul class="list-inline social"> 
-                                    <li><a href="#" class="fa fa-facebook"></a></li> <!-- facebook link here -->
-                                    <li><a href="#" class="fa fa-twitter"></a></li> <!-- twitter link here -->
-                                    <li><a href="#" class="fa fa-google-plus"></a></li> <!-- google plus link here -->
-                                </ul>
-                            </div>
-                        </div> <!-- End Team Wrapper -->
-                    </div><!-- End Team #2 -->
-
-                    <div class="item"> <!-- Team #3 -->
-                        <div class="hover-bg"> <!-- Team Wrapper -->
-                            <div class="hover-text off"> <!-- Hover Description -->
-                                <p>Vivamus aliquet rutrum dui a varius. Mauris ornare tortor in eleifend blanditullam ut ligula et neque. Nec bibendum erat volutpat ultricies. Aliquet rutrum dui a varius. Mauris ornare tortor. </p>
-                            </div> <!-- End Hover Description -->
-                            <img src="<?=IMAGENS?>team/03.png" alt="..." class="img-responsive"><!-- Team Image -->
-                            <div class="team-detail text-center">
-                                <h3>Cara bombado</h3>
-                                <p class="text-uppercase">reinador</p>
-                                <ul class="list-inline social"> 
-                                    <li><a href="#" class="fa fa-facebook"></a></li> <!-- facebook link here -->
-                                    <li><a href="#" class="fa fa-twitter"></a></li> <!-- twitter link here -->
-                                    <li><a href="#" class="fa fa-google-plus"></a></li> <!-- google plus link here -->
-                                </ul>
-                            </div>
-                        </div><!-- End Team Wrapper -->
-                    </div><!-- End Team #3 -->
-
-                    <div class="item"><!-- Team #4 -->
-                        <div class="hover-bg"> <!-- Team Wrapper -->
-                            <div class="hover-text off"> <!-- Hover Description -->
-                                <p>Aliquet rutrum dui a varius. Mauris ornare tortor in eleifend blanditullam ut ligula et neque. Quis placerat dui. Duis lacinia nisi sit ansequat lorem nunc, nec bibendum erat volutpat ultricies.</p>
-                            </div> <!-- End Hover Description -->
-                            <img src="<?=IMAGENS?>team/01.jpg" alt="..." class="img-responsive"> <!-- Team Image -->
-                            <div class="team-detail text-center">
-                                <h3>Maria Shara</h3>
-                                <p class="text-uppercase">Founder / CEO</p>
-                                <ul class="list-inline social"> 
-                                    <li><a href="#" class="fa fa-facebook"></a></li> <!-- facebook link here -->
-                                    <li><a href="#" class="fa fa-twitter"></a></li> <!-- twitter link here -->
-                                    <li><a href="#" class="fa fa-google-plus"></a></li> <!-- google plus link here -->
-                                </ul>
-                            </div>
-                        </div> <!-- End Team Wrapper -->
-                    </div><!-- End Team #4 -->
-
-                    <div class="item"><!-- Team #5 -->
-                        <div class="hover-bg"> <!-- Team Wrapper -->
-                            <div class="hover-text off"> <!-- Hover Description -->
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus ipsum, expedita ducimus eveniet dolor quae iusto voluptate ipsa veniam non qui ea animi necessitatibus iste dolores, id magnam dignissimos facere?.</p>
-                            </div> <!-- End Hover Description -->
-                            <img src="<?=IMAGENS?>team/03.png" alt="..." class="img-responsive"> <!-- Team Image -->
-                            <div class="team-detail text-center">
-                                <h3>Cara bombado</h3>
-                                <p class="text-uppercase">Treinador</p>
-                                <ul class="list-inline social"> 
-                                    <li><a href="#" class="fa fa-facebook"></a></li> <!-- facebook link here -->
-                                    <li><a href="#" class="fa fa-twitter"></a></li> <!-- twitter link here -->
-                                    <li><a href="#" class="fa fa-google-plus"></a></li> <!-- google plus link here -->
-                                </ul>
-                            </div>
-                        </div> <!-- End Team Wrapper -->
-                    </div><!-- End Team #5 -->
-
-                </div> <!-- end team carousel wrapper -->
-
-            </div> <!-- container -->
-        </div>
+            </div>
+        <?php } ?>
 
         <!--  Blog Section
             ================================================== -->
