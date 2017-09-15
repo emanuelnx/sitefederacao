@@ -35,3 +35,11 @@ $route['admin/historias/criar']['post'] = "historias/criar";
 $route['admin/historias/editar']['post'] = "historias/editar";
 $route['admin/historias/atualizar']['post'] = "historias/atualizar";
 $route['admin/historias/excluir']['post'] = "historias/excluir";
+
+$route['admin/patrocinadores']['get'] = "patrocinadores/index";
+$route['admin/patrocinadores/exibir/(:num)']['get'] = "patrocinadores/exibir";
+$route['admin/patrocinadores/cadastrar']['get'] = "patrocinadores/cadastrar";
+$route['admin/patrocinadores/criar']['post'] = "patrocinadores/criar";
+$route['admin/patrocinadores/editar']['post'] = "patrocinadores/editar";
+$route['admin/patrocinadores/atualizar']['post'] = "patrocinadores/atualizar";
+$route['admin/patrocinadores/excluir']['post'] = "patrocinadores/excluir";
