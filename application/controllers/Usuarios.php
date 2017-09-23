@@ -41,7 +41,7 @@ class Usuarios extends MY_Controller {
 		if ($this->Usuario_model->validacoesRegistrar() !== false) {
 
 			$dados = array(
-				'id_tipo_usuario' => 1,
+				'tipo_usuario_id' => 1,
 				'login' => $this->input->post('login'),
 				'email' => $this->input->post('email'),
 				'senha' => password_hash($this->input->post('senha'), PASSWORD_BCRYPT),
@@ -109,20 +109,13 @@ class Usuarios extends MY_Controller {
 	 */
 	public function logout() {
 		
-		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-			
+		if (isset($_SESSION)) {
 			// remove dados da sessao
 			foreach ($_SESSION as $key => $value) {
 				unset($_SESSION[$key]);
 			}
-			
-			// logout de usuario ok
-			$this->dadosView['pagina'] = 'usuario/logout/logout_success.php';
-			$this->dadosView['template'] = 'site';
-
-			$this->load->view('container_externo.php',$this->dadosView);
-		} else {
-			redirect(base_url(), 'GET');
 		}
+
+		redirect(base_url(), 'GET');
 	}
 }

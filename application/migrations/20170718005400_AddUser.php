@@ -46,8 +46,8 @@
 			$this->dbforge->create_table($this->tabela,TRUE);
 			// adicionando fk
 			$this->dbforge->add_column($this->tabela,[
-			    'COLUMN id_tipo_usuario INT NOT NULL',
-			    'CONSTRAINT fk_id_tipo_usuario FOREIGN KEY(id_tipo_usuario) REFERENCES tipo_usuario(id)',
+			    'COLUMN tipo_usuario_id INT NOT NULL',
+			    'CONSTRAINT fk_tipo_usuario_id FOREIGN KEY(tipo_usuario_id) REFERENCES tipo_usuario(id)',
 			]);
 		}
 

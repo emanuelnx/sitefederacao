@@ -14,7 +14,6 @@ class Historias extends MY_Controller {
 	public function __construct() {
         parent::__construct();
         $this->load->model(array("Historia_model"));
-		$this->load->helper(array('datas'));
 		$this->dadosView['template'] = 'admin';
     }
 
@@ -32,14 +31,12 @@ class Historias extends MY_Controller {
 			$id = $this->uri->segment(4);
 			if (empty($id)) {show_404();}
 			$this->dadosView['pagina'] = 'admin/historias/exibir.php';
-			// $this->load->view('admin/container.php',$this->dadosView);
 			$template = 'admin/container.php';
 		} else {
 			$id = $this->uri->segment(2);
 			if (empty($id)) {show_404();}
 			$this->dadosView['pagina'] = 'site/historias.php';
 			$this->dadosView['template'] = 'site';
-			// $this->load->view('container_externo.php',$this->dadosView);
 			$template = 'container_externo.php';
 		}
 

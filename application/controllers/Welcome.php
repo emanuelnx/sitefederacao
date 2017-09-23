@@ -31,6 +31,7 @@ class Welcome extends MY_Controller {
 	}
 
 	private function montaPatrocinadores() {
+		$this->load->helper('diretorio');
 		$patrocinadores = $this->Patrocinador_model->pegueTodos();
 
 		// patrocinio anuncie aqui
@@ -49,15 +50,18 @@ class Welcome extends MY_Controller {
 		}
 
 		foreach ($patrocinadores as $key => $patrocinador) {
-			if (file_exists(base_url(base_url("assets/uploads/patrocinadores/{$patrocinador->id}")))) {
-				$patrocinadores[$key]->imagem = base_url("assets/uploads/patrocinadores/{$patrocinador->id}");
+			// caminho fisico das imagens
+			$path = upload_path("/patrocinadores/{$patrocinador->id}");
+
+			if ($extensao = existeArquivoPasta($path,array('jpg','jpeg','gif','png'))) {
+				$patrocinadores[$key]->imagem = upload_url("/patrocinadores/{$patrocinador->id}.{$extensao}");
 			} else {
 				$patrocinadores[$key]->imagem = base_url("assets/imagens/anuncie.png");
 			}
 		}
-		// adicionando o patrocinador padrao
+		// adicionando o patrocinador padrao. Sempre tera ao menos um para instigar a entrarem em contato para patrocinar.
 		$patrocinadores[] = clone $patrocinador;
-// echo '<pre>';print_r($patrocinadores);
+
 		return $patrocinadores;
 	}
 }

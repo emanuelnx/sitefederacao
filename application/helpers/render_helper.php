@@ -10,8 +10,8 @@ if (!function_exists('asset_url')) {
 }
 
 if (!function_exists('upload_url')) {
-	function upload_url() {
-		return base_url().'assets/upload';
+	function upload_url($url = '') {
+		return base_url().'assets/uploads'.$url;
 	}
 }
 
@@ -60,7 +60,7 @@ if (!function_exists('is_checked')) {
 if (!function_exists('showErrorHtml')) {
 	function showErrorHtml($msg) {
 		if($msg) {
-        	return '<div class="alert alert-danger">'.$msg.'</div>';
+        	return '<div class="callout callout-danger"><h4>Aviso</h4><p>'.$msg.'</p></div>';
 		}
 	}
 }
@@ -68,7 +68,7 @@ if (!function_exists('showErrorHtml')) {
 if (!function_exists('showSuccessHtml')) {
 	function showSuccessHtml($msg) {
 		if($msg) {
-        	return '<div class="alert alert-success">'.$msg.'</div>';
+        	return '<div class="callout callout-success"><h4>Sucesso</h4><p>'.$msg.'</p></div>';
 		}
 	}
 }
@@ -76,7 +76,25 @@ if (!function_exists('showSuccessHtml')) {
 if (!function_exists('showInfoHtml')) {
 	function showInfoHtml($msg) {
 		if($msg) {
-        	return '<div class="alert alert-info">'.$msg.'</div>';
+        	return '<div class="callout callout-info"><h4>Informação</h4><p>'.$msg.'</p></div>';
 		}
+	}
+}
+
+if (!function_exists('inputEnviaOuExibir')) {
+	function inputEnviaOuExibir($name,$acao,$input='') {
+		$retorno = '';
+		if ($acao == 'exibir') {
+			switch ($input) {
+				case 'chk':
+					$retorno = ' disabled name = "'.$name.'"';
+					break;
+				default:
+					$retorno = ' readonly ';
+					break;
+			}
+			return $retorno;
+		}
+		return ' name = "'.$name.'"';
 	}
 }

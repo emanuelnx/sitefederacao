@@ -4,6 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MY_Controller extends CI_Controller {
 
 	protected $dadosView = array();
+    /**
+    * definimos o path onde o arquivo será gravado
+    * @var String
+    */
+    protected $pathUpload = ABSPATH.'/assets/uploads/';
 
 	public function __construct() {
         parent::__construct();
@@ -74,4 +79,23 @@ class MY_Controller extends CI_Controller {
             $this->dadosView['assets']['compartilhado']['css'] = $arquivos;
         }
 	}
+
+    /**
+    * Insere mensagens padronizadas na sessao para serem exibidas em uma view
+    * apos um redirect.
+    * @param bool $tipo - TRUE sucesso  e FALSE erro
+    * @param string $str - descricao para o texto que sera inserido na sessao (atualizar, criar, excluir)
+    */
+    protected function setFlashMensage($config) {//$tipo, $str) {
+        if (isset($config['customizada'])) {
+            $_SESSION[$config['customizada']['tipo']] = $config['customizada']['msg'];
+            return;
+        }
+
+        if ($config['tipo']) {
+            $_SESSION['sucesso'] = "Sucesso ao {$config['str']} o registro.";
+        } else {
+            $_SESSION['erro'] = "Erro ao {$config['str']} registro! contate o administrador do sistema.";
+        }
+    }
 }

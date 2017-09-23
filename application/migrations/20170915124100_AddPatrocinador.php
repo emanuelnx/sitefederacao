@@ -30,9 +30,6 @@
 					'type' => 'VARCHAR',
 					'constraint' => 100
 				),
-				'imagem' => array(
-					'type' => 'INT'
-				),
 				'conteudo' => array(
 					'type' => 'TEXT',
 					'null' => FALSE

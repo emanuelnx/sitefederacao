@@ -2,6 +2,12 @@
 	defined('BASEPATH') OR exit('Script não pode ser acessado diretamente.');
 
 	/**
+	* padroes:
+	* fk - nomedatabela_id
+	* pk - id; caso seja mais de uma pk ainda tem de criar padrao
+	* nome de tabela - todo minusculo separado por _
+	* tabela intermediarias - possuem id, create_at e as fks
+	*
 	* Cria tabela de tipos de usuario
 	*/
 	class Migration_AddTypeUser extends CI_Migration {
@@ -53,7 +59,7 @@
 			if ($this->db->trans_status() === FALSE) {
 				$this->db->trans_rollback();
 				$this->down();
-				echo "erro ao criar {$this->tabela} usuario criada <br>";
+				echo "erro ao criar {$this->tabela}<br>";
 			} else {
 				$this->db->trans_commit();
 				echo "tabela {$this->tabela} criada <br>";

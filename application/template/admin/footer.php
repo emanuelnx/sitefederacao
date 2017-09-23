@@ -6,8 +6,6 @@
    
 </footer>
 
-
-<!-- ./wrapper -->
 <!-- Morris.js charts -->
 <script src="<?=asset_url($template)?>js/raphael.min.js"></script>
 <script src="<?=asset_url($template)?>js/morris.min.js"></script>
@@ -20,7 +18,7 @@
   $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.7 -->
-<script src="<?=asset_url($template)?>js/bootstrap.min.js"></script>
+<script src="<?=asset_url($template)?>js/bootstrap/bootstrap.min.js"></script>
 
 <!-- Sparkline -->
 <script src="<?=asset_url($template)?>js/jquery.sparkline.min.js"></script>
@@ -34,6 +32,7 @@
 <script src="<?=asset_url($template)?>js/daterangepicker.js"></script>
 <!-- datepicker -->
 <script src="<?=asset_url($template)?>js/bootstrap-datepicker.min.js"></script>
+<script src="<?=asset_url($template)?>plugins/ckeditor.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?=asset_url($template)?>js/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
@@ -41,7 +40,6 @@
 <!-- FastClick -->
 <script src="<?=asset_url($template)?>js/fastclick.js"></script>
 
-<script src="<?=asset_url($template)?>js/ckeditor.js"></script>
 <!-- AdminLTE App -->
 <script src="<?=asset_url($template)?>js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

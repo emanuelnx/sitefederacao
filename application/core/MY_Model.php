@@ -18,35 +18,75 @@ class MY_Model extends CI_Model {
     /**
      * nome da tabela no banco de dados.
      * Deve ser setado no construtor.
+     * @var String
      */
     protected $table;
 
     /**
      * Instancia do banco de dados que esta sendo utilizado no model.
      * Deve ser setado no construtor.
+     * @var object
      */
     protected $_database;
     /**
-     * Identificador unico da tabela. Utiliza por padrao 'id'.
+     * Identificadores unicos da tabela. Utiliza por padrao 'id'.
      * Deve ser setado no construtor.
      * Utilizada em metodos de selecao, atualizacao e exclusao.
+     * @var String
+     * @todo verificar como ficaria como um array (para casos de multiplas chaves)
      */
     protected $pk = 'id';
 
     /**
-     * Relacionamentos com outras tabelas.
-     * Deverao ser setados no construtor.
-     * @todo pensar como pode ser implementado 
+     * Identificador unico da tabela. Utiliza por padrao 'id'.
+     * Deve ser setado no construtor.
+     * Utilizada em metodos de selecao.
+     * @var array
      */
-    protected $pertence_a = array();
-    protected $tem_muitos = array();
+    protected $fks = array();
+
+    /**
+     * Ativa ou desativa o uso de relacionamentos nas consultas.
+     * @var bool
+     */
+    protected $relacionar = true;
+
+    /**
+     * Relacionamentos um para um com outra tabela.
+     * Nesta tabela pode existir zero ou uma tupla que relacioa-se outra tabela atraves de uma chave estrangeira.
+     * @var array
+     */
+    protected $temUm = array();
+
+    /**
+     * Relacionamentos um para muitos com outra tabela.
+     * Em outra tabela pode existir zero ou mais tupla que relacioanam-se com esta tabela atraves de uma chave estrangeira.
+     * @var array
+     */
+    protected $temMuitos = array();
+
+    /**
+     * Relacionamentos muitos para muitos com outra tabela.
+     * Existe uma tabela intermediaria na qual pode existir zero ou mais tupla que relacioanam esta a outra tabela.
+     * Elas nao possuem chaves extrangeiras, pois estas chaves encontram-se na tabela intermediaria.
+     * formato de nome de tabela intermediaria: tabela1_tabela2. Use a ordem alfabetica.
+     * @var array
+     */
+    protected $muitosParaMuitos = array();
+
+    /**
+     * Ativa o debug do banco (impresao das consultas realizadas).
+     * @var bool
+     */
     private $debug = false;
-    //protected $has_one = array();
-    //protected $many_to_many = array();
 
     public function __construct() {
         parent::__construct();
         $this->_database = $this->db;
+    }
+
+    public function getPk() {
+        return $this->pk;
     }
 
     public function debugar($debug) {
@@ -68,13 +108,98 @@ class MY_Model extends CI_Model {
         $this->_database = $db;
     }
     /* --------------------------------------------------------------
-     * CRUD INTERFACE
+     * RELACIONAMENTOS
+     * ------------------------------------------------------------ */
+    public function utilizarRelacionamentos($bool) {
+        $this->relacionar = $bool;
+    }
+
+    public function relacionamentos($dados) {
+        if(!$this->relacionar || empty($dados)) {
+            return $dados;
+        }
+
+        foreach ($this->temUm as $key => $tabelaFk) {
+            if (!is_string($tabelaFk)) {continue;}
+
+            $model = $tabelaFk.'_model';
+            $this->load->model($model);
+            $fk = $tabelaFk.'_id';
+
+            foreach ($dados as $key => $tupla) {
+                $retorno = $this->{$model}->achePor($this->{$model}->getPk()." = '".$tupla->{$fk}."'");
+                $this->imprimeDebug();
+   
+                if (is_object($tupla)) {
+                    $dados[$key]->{$tabelaFk} = $retorno;
+                } else {
+                    $dados[$key][$tabelaFk] = $retorno;
+                }
+            }
+        }
+
+        // tem muitos esta ok
+        foreach ($this->temMuitos as $key => $value) {
+            if (!is_string($value)) {continue;}
+
+            $model = $value.'_model';
+            $this->load->model($model);
+
+            foreach ($dados as $key => $tupla) {
+                // buscando todas as tuplas onde a chave estrangeira nome_desta_tabela_id possua valor igual a $dado(objeto atual da iteracao).
+                $retorno = $this->{$model}->achePor("{$this->table}_id = '{$tupla[$this->pk]}'");
+                $this->imprimeDebug();
+
+                if (is_object($tupla)) {
+                    $dados[$key]->{$value} = $retorno;
+                } else {
+                    $dados[$key][$value] = $retorno;
+                }
+            }
+        }
+
+        // muitos para muitos esta ok
+        foreach ($this->muitosParaMuitos as $key => $dadosTabelas) {
+            $tabelaFk = $dadosTabelas['tabelaFk'];
+            $tabelaIntermediaria = $dadosTabelas['tabelaIntermediaria'];
+            if (!is_string($tabelaFk) || !is_string($tabelaIntermediaria)) {continue;}
+
+            // carregando o model da chave estrangeira
+            $model = $tabelaFk.'_model';
+            $this->load->model($model);
+            $fk = $this->{$model}->fks;
+
+            foreach ($dados as $key => $tupla) {
+                // buscando todas as tuplas onde a chave primaria das duas tabelas estejam relacionadas na tabela intermediaria.
+                $retorno = $this->{$model}->_database->query("
+                    SELECT * FROM {$tabelaFk}
+                    inner join {$tabelaIntermediaria} 
+                        on {$tabelaFk}.id = {$tabelaIntermediaria}.{$tabelaFk}_id
+                        and {$this->table}.id = {$tabelaIntermediaria}.{$this->table}_id
+                ");
+                $this->imprimeDebug();
+
+                if (is_object($tupla)) {
+                    $dados[$key]->{$tabelaFk} = $retorno;
+                } else {
+                    $dados[$key][$tabelaFk] = $retorno;
+                }
+            }
+        }
+        return $dados;
+    }
+
+    /* --------------------------------------------------------------
+     * METODOS CRUD
      * ------------------------------------------------------------ */
     /**
      * retorna uma unica tupla baseada na chave primaria.
+     * @param mixed $pk
+     * @return array
      */
     public function ache($pk) {
-        return $this->achePor("{$this->pk} = {$pk}");
+        $sql = $this->achePor("{$this->pk} = {$pk}");
+        return $this->relacionamentos($sql);
     }
 
     /**
@@ -253,46 +378,6 @@ class MY_Model extends CI_Model {
     }
 
     /* --------------------------------------------------------------
-     * RELATIONSHIPS
-     * ------------------------------------------------------------ */
-
-    public function relacionamentos($row) {
-		if (empty($row)) {
-		    return $row;
-        }
-
-        foreach ($this->pertence_a as $key => $value) {
-            if (!is_string($value)) {
-                continue;
-            }
-            $options = array( 'primary_key' => $value . '_id', 'model' => $value . '_model' );
-
-            $this->load->model($options['model'], $value . '_model');
-            if (is_object($row)) {
-                $row->{$value} = $this->{$value . '_model'}->ache($row->{$options['primary_key']});
-            } else {
-                $row[$value] = $this->{$value . '_model'}->ache($row[$options['primary_key']]);
-            }
-        }
-
-        foreach ($this->tem_muitos as $key => $value) {
-            if (!is_string($value)) {
-                continue;
-            }
-                $options = array( 'primary_key' => singular($this->table) . '_id', 'model' => singular($value) . '_model' );
-
-            $this->load->model($options['model'], $value . '_model');
-            if (is_object($row)) {
-                $row->{$value} = $this->{$value . '_model'}->acheVariosPor($options['primary_key'], $row->{$this->primary_key});
-            } else {
-                $row[$value] = $this->{$value . '_model'}->acheVariosPor($options['primary_key'], $row[$this->primary_key]);
-            }
-        }
-
-        return $row;
-    }
-
-    /* --------------------------------------------------------------
      * METODOS UTILITARIOS
      * ------------------------------------------------------------ */
 
@@ -333,34 +418,35 @@ class MY_Model extends CI_Model {
         return $this->table;
     }
 
-    /* --------------------------------------------------------------
-     * OBSERVERS
-     * ------------------------------------------------------------ */
     /**
-     * MySQL DATETIME created_at and updated_at
+     * Data de criacao para ser adicionado em inserts
      */
-    public function created_at($row) {
-        if (is_object($row)) {
-            $row->created_at = date('Y-m-d H:i:s');
+    public function created_at($tupla) {
+        if (is_object($tupla)) {
+            $tupla->created_at = date('Y-m-d H:i:s');
         } else {
-            $row['created_at'] = date('Y-m-d H:i:s');
+            $tupla['created_at'] = date('Y-m-d H:i:s');
         }
 
-        return $row;
+        return $tupla;
     }
 
-    public function updated_at($row) {
-        if (is_object($row)) {
-            $row->updated_at = date('Y-m-d H:i:s');
+    /**
+     * Data de atualizacao para ser adicionado em updates
+     */
+    public function updated_at($tupla) {
+        if (is_object($tupla)) {
+            $tupla->updated_at = date('Y-m-d H:i:s');
         } else {
-            $row['updated_at'] = date('Y-m-d H:i:s');
+            $tupla['updated_at'] = date('Y-m-d H:i:s');
         }
 
-        return $row;
+        return $tupla;
     }
 
     /**
      * Cria as condicoes para a query.
+     * @param mixed(string|array) $params - pode ser uma strig ou um array chave-valor
      */
     protected function criaCondicoes($params) {
         if (is_string($params)) {
@@ -372,42 +458,13 @@ class MY_Model extends CI_Model {
             return;
         }
 
-        $quantidadeParametros = count($params);
-        switch ($quantidadeParametros) {
-            case 1:
-                if (!is_array($params[0])) {
-                    $this->_database->where($params[0]);
-                } else {
-                    foreach ($params[0] as $field => $filter) {
-                        if (is_array($filter)) {
-                            $this->_database->where_in($field, $filter);
-                        } else {
-                            if (is_int($field)) {
-                                $this->_database->where($filter);
-                            } else {
-                                $this->_database->where($field, $filter);
-                            }
-                        }
-                    }        
-                }
-                break;
-            case 2:
-                if (is_array($params[1])) {
-                    $this->_database->where_in($params[0], $params[1]);    
-                } else {
-                    $this->_database->where($params[0], $params[1]);
-                }
-                break;
-            case 3:
-                $this->_database->where($params[0], $params[1], $params[2]);
-                break;
-            default:
-                if (is_array($params[1])) {
-                    $this->_database->where_in($params[0], $params[1]);    
-                } else {
-                    $this->_database->where($params[0], $params[1]);
-                }
-                break;
+        foreach ($params as $campo => $valor) {
+            if (is_int($campo)) { continue;}
+            if (is_array($valor)) {
+                $this->_database->where_in($campo, $valor);
+            } else {
+                $this->_database->where($campo, $valor);
+            }
         }
     }
 }

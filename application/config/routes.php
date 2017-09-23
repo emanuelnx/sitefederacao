@@ -43,3 +43,22 @@ $route['admin/patrocinadores/criar']['post'] = "patrocinadores/criar";
 $route['admin/patrocinadores/editar']['post'] = "patrocinadores/editar";
 $route['admin/patrocinadores/atualizar']['post'] = "patrocinadores/atualizar";
 $route['admin/patrocinadores/excluir']['post'] = "patrocinadores/excluir";
+
+$route['admin/links']['get'] = "links/index";
+$route['admin/links/exibir/(:num)']['get'] = "links/exibir";
+$route['admin/links/cadastrar']['get'] = "links/cadastrar";
+$route['admin/links/criar']['post'] = "links/criar";
+$route['admin/links/editar']['post'] = "links/editar";
+$route['admin/links/atualizar']['post'] = "links/atualizar";
+$route['admin/links/excluir']['post'] = "links/excluir";
+
+// NOTICIAS
+$route['noticias/(:num)']['get'] = "noticias/exibir";
+
+$route['admin/noticias']['get'] = "noticias/index";
+$route['admin/noticias/exibir/(:num)']['get'] = "noticias/exibir";
+$route['admin/noticias/cadastrar']['get'] = "noticias/cadastrar";
+$route['admin/noticias/criar']['post'] = "noticias/criar";
+$route['admin/noticias/editar']['post'] = "noticias/editar";
+$route['admin/noticias/atualizar']['post'] = "noticias/atualizar";
+$route['admin/noticias/excluir']['post'] = "noticias/excluir";
