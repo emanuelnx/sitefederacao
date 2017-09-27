@@ -215,13 +215,13 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?=asset_url($template)?>imagens/user.png" class="user-image" alt="User Image">
+                        <img src="<?=asset_url()?>imagens/user.png" class="user-image" alt="User Image">
                         <span class="hidden-xs"><?=$_SESSION['usuario']->login?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?=asset_url($template)?>imagens/user.png" class="img-circle" alt="User Image">
+                            <img src="<?=asset_url()?>imagens/user.png" class="img-circle" alt="User Image">
                             <p>
                                 <?=$_SESSION['usuario']->login.' - '.$_SESSION['usuario']->email?>
                                 <small>Membro desde <?=dataHoraBrasileira($_SESSION['usuario']->created_at)?></small>

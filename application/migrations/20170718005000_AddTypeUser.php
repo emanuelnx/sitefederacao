@@ -46,8 +46,8 @@
 		private function defaultValues() {
 			$agora = date('Y-m-d H:i:s');
 			$dados = array(
-	            array('created_at' => $agora,'descricao' => 'Administrador','status' => 1),
 	            array('created_at' => $agora,'descricao' => 'root','status' => 1),
+	            array('created_at' => $agora,'descricao' => 'Administrador','status' => 1),
 	            array('created_at' => $agora,'descricao' => 'padrao','status' => 1)
 	        );
 

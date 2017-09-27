@@ -26,22 +26,23 @@ class Historias extends MY_Controller {
 	}
 
 	public function exibir() {
+		$this->paginaAdministrativa();
+		$id = $this->uri->segment(4);
+		if (empty($id)) {show_404();}
+		$this->dadosView['pagina'] = 'admin/historias/exibir.php';
+		$this->dadosView['historia'] = $this->Historia_model->ache($id);
+		$this->load->view('admin/container.php',$this->dadosView);
+	}
 
-		if ($this->ehAdmin()) {
-			$id = $this->uri->segment(4);
-			if (empty($id)) {show_404();}
-			$this->dadosView['pagina'] = 'admin/historias/exibir.php';
-			$template = 'admin/container.php';
-		} else {
-			$id = $this->uri->segment(2);
-			if (empty($id)) {show_404();}
-			$this->dadosView['pagina'] = 'site/historias.php';
-			$this->dadosView['template'] = 'site';
-			$template = 'container_externo.php';
-		}
+	public function exibirSite() {
+
+		$id = $this->uri->segment(2);
+		if (empty($id)) {show_404();}
+		$this->dadosView['pagina'] = 'site/historias.php';
+		$this->dadosView['template'] = 'site';
 
 		$this->dadosView['historia'] = $this->Historia_model->ache($id);
-		$this->load->view($template,$this->dadosView);
+		$this->load->view('container_externo.php',$this->dadosView);
 	}
 
 	public function cadastrar() {

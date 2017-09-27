@@ -1,6 +1,4 @@
 <head>
-    <!-- Basic Page Needs
-    ================================================== -->
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">

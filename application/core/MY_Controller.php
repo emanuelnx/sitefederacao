@@ -17,13 +17,7 @@ class MY_Controller extends CI_Controller {
         $this->dadosView['info'] = false;
         $this->dadosView['erro'] = false;
         $this->dadosView['sucesso'] = false;
-        $this->dadosView['assets'] = array(
-        	/*'css' => array(),
-        	'js' => array(
-        		'footer' => array(),
-        		'head' => array()
-        	),*/
-        );
+        $this->dadosView['assets'] = array();
 
         $this->setMensagens();
     }
@@ -48,8 +42,18 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    protected function ehAdmin() {
+    protected function ehRoot() {
         return (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1) ? true : false;
+    }
+
+    protected function paginaRoot() {
+        if (!$this->ehRoot()) {
+            show_404();
+        }
+    }
+
+    protected function ehAdmin() {
+        return (isset($_SESSION['logged_in']) && in_array($_SESSION['logged_in'], array(1,2))) ? true : false;
     }
 
     protected function paginaAdministrativa() {

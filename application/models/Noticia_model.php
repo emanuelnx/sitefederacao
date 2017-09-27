@@ -7,8 +7,9 @@
 	class Noticia_model extends MY_Model {
 		
 		public function __construct() {
-	        $this->table = 'noticia';
-	        parent::__construct();
+			$this->table = 'noticia';
+			$this->temUm[] = 'usuario';
+			parent::__construct();
 	    }
 
 	    /**
@@ -23,22 +24,16 @@
 			
 			// configurando regras de validacao
 			$this->form_validation->set_rules(
-				'site', 
-				'Site', 
-				'trim|required|is_unique[link.site]',
-				array(
-					'is_unique' => 'Este site já existe.',
-					'required' => 'Site é obrigatório'
-				)
+				'titulo', 
+				'Título', 
+				'trim|required',
+				array('required' => 'Título é obrigatório')
 			);
 			$this->form_validation->set_rules(
-				'link',
-				'Link',
-				'trim|required|is_unique[link.link]',
-				array(
-					'is_unique' => 'Este link já existe.',
-					'required' => 'Link é obrigatório.'
-				)
+				'conteudo',
+				'Conteudo',
+				'trim|required',
+				array('required' => 'Conteudo é obrigatório.')
 			);
 
 			return $this->form_validation->run();

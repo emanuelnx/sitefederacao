@@ -8,13 +8,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><img src="<?=IMAGENS?>logocbkb.png" alt="..."></a>
+          <a class="navbar-brand" href="#"><img src="<?=asset_url()?>imagens/logocbkb.png" alt="..."></a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#tf-home" class="scroll">Home</a></li>
+            <li><a href="<?=base_url()?>" class="scroll">Home</a></li>
             <?php   if(isset($historias) && count($historias)) { ?>
                         <li><a href="#tf-about" class="scroll">Historia</a></li>
             <?php   } ?>
@@ -28,6 +27,6 @@
                         <li><a href="<?=base_url('registrar')?>" class="scroll">Registrar-se</a></li>
             <?php   } ?>
           </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>

@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+require APPPATH."traits/Upload_unic_trait.php";
 /**
 * Exibe patrocinadores da instituicao
 *
@@ -10,6 +11,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 * - nome da imagem: id do patrocinador
 */
 class Patrocinadores extends MY_Controller {
+
+	use Upload_unic;
+
 	/**
 	* definimos o path onde o arquivo será gravado
 	* @var String
@@ -138,7 +142,7 @@ class Patrocinadores extends MY_Controller {
 		redirect(base_url("admin/patrocinadores"));
 	}
 
-	// Método que processar o upload do arquivo
+	/*// Método que processar o upload do arquivo
     public function Upload($nome){
     	if (empty($_FILES['userfile']['name'])) {
     		return true;
@@ -167,5 +171,5 @@ class Patrocinadores extends MY_Controller {
         }
 		//var_dump($this->upload->data()); //recuperamos os dados do arquivo
         return true;
-    }
+    }*/
 }

@@ -8,11 +8,11 @@
 		
 		public function __construct() {
 	        $this->table = 'patrocinador';
+	        parent::__construct();
 	        array_push(
 	        	$this->muitosParaMuitos, 
 	        	array('tabelaFk' => 'link', 'tabelaIntermediaria' => 'patrocinador_link')
 	    	);
-	        parent::__construct();
 	        $this->utilizarRelacionamentos(false);
 	    }
 

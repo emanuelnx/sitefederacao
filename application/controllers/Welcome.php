@@ -1,17 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require APPPATH."traits/Imagens_trait.php";
 
 class Welcome extends MY_Controller {
+
+	use Imagens;
 
 	public function __construct() {
         parent::__construct();
     }
 
 	public function index() {
-		$this->load->model(array("Historia_model"));
-		$this->load->model(array("Patrocinador_model"));
+		$this->load->model(array("Historia_model","Patrocinador_model","Noticia_model"));
 
 		$this->dadosView['historias'] = $this->Historia_model->pegueTodos();
+		$this->dadosView['noticias'] = $this->inserirImagemPadrao($this->Noticia_model->pegueTodos(),'noticias');
+
 		$this->dadosView['patrocinadores'] = $this->montaPatrocinadores();
 		$this->dadosView['pagina'] = 'body_externo.php';
 		$this->dadosView['template'] = 'site';

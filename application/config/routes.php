@@ -26,7 +26,7 @@ $route['logout']['get'] 	= "usuarios/logout"; // efetuar o logoff
 $route['admin']['get'] = "admin/index";
 
 // historias
-$route['historias/(:num)']['get'] = "historias/exibir";
+$route['historias/(:num)']['get'] = "historias/exibirSite";
 
 $route['admin/historias']['get'] = "historias/index";
 $route['admin/historias/exibir/(:num)']['get'] = "historias/exibir";
@@ -53,7 +53,7 @@ $route['admin/links/atualizar']['post'] = "links/atualizar";
 $route['admin/links/excluir']['post'] = "links/excluir";
 
 // NOTICIAS
-$route['noticias/(:num)']['get'] = "noticias/exibir";
+$route['noticias/(:num)']['get'] = "noticias/exibirSite";
 
 $route['admin/noticias']['get'] = "noticias/index";
 $route['admin/noticias/exibir/(:num)']['get'] = "noticias/exibir";

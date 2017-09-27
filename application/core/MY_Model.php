@@ -53,7 +53,7 @@ class MY_Model extends CI_Model {
 
     /**
      * Relacionamentos um para um com outra tabela.
-     * Nesta tabela pode existir zero ou uma tupla que relacioa-se outra tabela atraves de uma chave estrangeira.
+     * Nesta tabela pode existir zero ou uma tupla que relacia-a a outra tabela.
      * @var array
      */
     protected $temUm = array();
@@ -119,21 +119,26 @@ class MY_Model extends CI_Model {
             return $dados;
         }
 
-        foreach ($this->temUm as $key => $tabelaFk) {
-            if (!is_string($tabelaFk)) {continue;}
+        /* 
+            O atributo {temum} eh um array simples de strings, onde cada elemento do array eh uma tabela do relacionamento.
+            Seguindo o padrao de criacao dos models nomedatabelanosingula_model e dachave estrangeira nomedatabelanosingula_id
+            criamos a consulta dinamicamente e guardamos seu valor no atributo com o nome da tabela.
+        */
+        foreach ($this->temUm as $relacionamento) {
+            if (!is_string($relacionamento)) {continue;}
 
-            $model = $tabelaFk.'_model';
+            $model = $relacionamento.'_model';
             $this->load->model($model);
-            $fk = $tabelaFk.'_id';
+            $fk = $relacionamento.'_id';
 
             foreach ($dados as $key => $tupla) {
                 $retorno = $this->{$model}->achePor($this->{$model}->getPk()." = '".$tupla->{$fk}."'");
                 $this->imprimeDebug();
    
                 if (is_object($tupla)) {
-                    $dados[$key]->{$tabelaFk} = $retorno;
+                    $dados[$key]->{$relacionamento} = $retorno[0];
                 } else {
-                    $dados[$key][$tabelaFk] = $retorno;
+                    $dados[$key][$relacionamento] = $retorno[0];
                 }
             }
         }
@@ -234,7 +239,8 @@ class MY_Model extends CI_Model {
     public function pegueTodos() {
         $row = $this->_database->get($this->table);
         $this->imprimeDebug();
-        return $row->result();
+        $sql = $row->result();
+        return $this->relacionamentos($sql);
     }
 
     /**

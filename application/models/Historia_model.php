@@ -9,6 +9,7 @@
 		public function __construct() {
 	        $this->table = 'historia';
 	        parent::__construct();
+	        $this->utilizarRelacionamentos(false);
 	    }
 
 	    /**
